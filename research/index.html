@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Research &amp; Activism · Javiera Luna Ceniceros</title>
+  <meta name="description" content="A research and activism practice spanning film circulation, archival work and militant cinema."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#0a0a0a;--bg2:#111;--bg3:#161616;
+      --fg:#f0ede6;
+      --fg60:rgba(240,237,230,.60);
+      --fg40:rgba(240,237,230,.40);
+      --fg25:rgba(240,237,230,.25);
+      --fg15:rgba(240,237,230,.15);
+      --fg08:rgba(240,237,230,.08);
+      --accent:#CFF9FE;
+      --accent-dim:rgba(207,249,254,.18);
+      --nav-h:52px;
+      --panel-w:460px;
+      --ease:cubic-bezier(.22,.61,.36,1);
+      --sans:'DM Sans','Helvetica Neue',sans-serif;
+      --serif:'DM Serif Display',Georgia,serif;
+    }
+    body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-weight:300;min-height:100vh;overflow-x:hidden}
+
+    /* ── NAV ── */
+    nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:var(--nav-h);border-bottom:.5px solid var(--fg08);background:rgba(10,10,10,.96);backdrop-filter:blur(10px);gap:1rem}
+    .nav-logo{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--fg40);text-decoration:none;flex-shrink:0;font-weight:500}
+    .nav-links{display:flex;align-items:center;list-style:none}
+    .nav-links a{display:flex;align-items:center;height:var(--nav-h);padding:0 .9rem;font-size:11px;letter-spacing:.04em;color:var(--fg40);text-decoration:none;border-bottom:1.5px solid transparent;transition:color .2s,border-color .2s;white-space:nowrap}
+    .nav-links a:hover,.nav-links a.active{color:var(--fg);border-bottom-color:var(--fg)}
+    .nav-contact{font-size:11px;color:var(--fg25);text-decoration:none;letter-spacing:.04em;transition:color .2s;flex-shrink:0}
+    .nav-contact:hover{color:var(--fg)}
+
+    /* ── PAGE HEADER ── */
+    .page-header{padding:5rem 2.5rem 4rem;border-bottom:.5px solid var(--fg08);max-width:900px}
+    .page-eyebrow{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--fg25);margin-bottom:1.5rem;display:block}
+    .page-title{font-family:var(--serif);font-size:clamp(2rem,4vw,3.2rem);font-weight:400;line-height:1.05;color:var(--fg);margin-bottom:2rem}
+    .page-statement{font-size:15px;line-height:1.9;color:var(--fg60);max-width:680px}
+    .page-statement em{font-style:italic;color:var(--fg)}
+
+    /* ── SECTIONS ── */
+    .section{padding:4rem 2.5rem;border-bottom:.5px solid var(--fg08)}
+    .section-label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--fg25);margin-bottom:2.5rem;display:block}
+
+    /* ── CIRCULATION ── */
+    .circulation-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+    .circ-img-wrap{width:100%;aspect-ratio:16/9;background:var(--bg2);border:.5px solid var(--fg08);overflow:hidden;margin-bottom:1rem;display:flex;align-items:center;justify-content:center}
+    .circ-img-wrap img{width:100%;height:100%;object-fit:cover;display:block}
+    .circ-img-wrap span{font-size:10px;color:var(--fg15);letter-spacing:.1em}
+    .circ-name{font-family:var(--serif);font-size:1.3rem;font-weight:400;color:var(--fg);margin-bottom:.3rem}
+    .circ-meta{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--fg25);margin-bottom:1rem}
+    .circ-text{font-size:13.5px;line-height:1.8;color:var(--fg40);margin-bottom:1.2rem}
+    .circ-link{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--fg25);text-decoration:none;border-bottom:.5px solid var(--fg15);padding-bottom:2px;transition:color .2s,border-color .2s}
+    .circ-link:hover{color:var(--accent);border-color:var(--accent)}
+
+    /* ── IDIS ── */
+    .idis-title{font-family:var(--serif);font-size:1.3rem;font-weight:400;color:var(--fg);margin-bottom:.3rem}
+    .idis-meta{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--fg25);margin-bottom:1rem}
+    .idis-intro{font-size:14px;line-height:1.85;color:var(--fg40);max-width:680px;margin-bottom:3rem}
+    .idis-link{color:var(--accent);text-decoration:none;border-bottom:.5px solid rgba(207,249,254,.3);transition:border-color .2s}
+    .idis-link:hover{border-color:var(--accent)}
+
+    /* ── MAP LAYOUT ── */
+    .map-layout{display:grid;grid-template-columns:1fr var(--panel-w);gap:2.5rem;align-items:start}
+
+    /* ── SVG MAP ── */
+    .map-frame{position:relative;width:100%}
+    #latam-map{width:100%;height:auto;display:block;overflow:visible}
+    .map-loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--fg15);transition:opacity .3s ease}
+    .map-loading.hidden{opacity:0;pointer-events:none}
+
+    /* All countries: base style (reference only, non-interactive) */
+    #latam-map path{
+      fill:#1a1a1a;
+      stroke:#292929;
+      stroke-width:.5;
+      vector-effect:non-scaling-stroke;
+    }
+    /* Countries WITH entries: lighter, interactive */
+    #latam-map path.has-data{
+      fill:#2a2a2a;
+      stroke:#3d3d3d;
+      stroke-width:.6;
+      cursor:pointer;
+      transition:fill .32s var(--ease), stroke .32s var(--ease), stroke-width .32s var(--ease);
+    }
+    #latam-map path.has-data:hover{
+      fill:var(--accent);
+      stroke:rgba(207,249,254,.55);
+      stroke-width:1;
+    }
+    #latam-map path.has-data.selected{
+      fill:var(--accent);
+      stroke:rgba(207,249,254,.85);
+      stroke-width:1.25;
+    }
+
+    /* ── INFO PANEL ── */
+    .info-panel{
+      position:sticky;
+      top:calc(var(--nav-h) + 2rem);
+      border:.5px solid var(--fg08);
+      background:var(--bg3);
+      min-height:340px;
+      display:flex;
+      flex-direction:column;
+    }
+
+    /* Empty state */
+    .panel-empty{
+      flex:1;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:1rem;
+      padding:2.5rem;
+      text-align:center;
+    }
+    .panel-empty-icon{
+      width:40px;height:40px;
+      border:.5px solid var(--fg15);
+      border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+    }
+    .panel-empty-icon svg{opacity:.3}
+    .panel-empty p{font-size:12px;color:var(--fg25);line-height:1.6;letter-spacing:.04em}
+
+    /* Loaded state */
+    .panel-loaded{display:none;flex-direction:column;flex:1}
+    .panel-loaded.visible{display:flex}
+
+    .panel-country-label{
+      padding:.9rem 1.5rem;
+      font-size:9px;letter-spacing:.2em;text-transform:uppercase;
+      color:var(--accent);
+      border-bottom:.5px solid var(--fg08);
+      flex-shrink:0;
+      opacity:1;
+      transition:opacity .22s var(--ease);
+    }
+
+    /* Carrusel */
+    .carousel{flex:1;display:flex;flex-direction:column}
+    .carousel-track{flex:1;padding:1.6rem 1.6rem .9rem;opacity:1;transition:opacity .22s var(--ease)}
+    .carousel-track.fading{opacity:0}
+    .panel-country-label.fading{opacity:0}
+
+    .artist-photo{
+      width:100%;aspect-ratio:16/9;
+      background:var(--bg2);
+      object-fit:cover;
+      display:block;
+      margin-bottom:1.2rem;
+    }
+    .artist-photo-placeholder{
+      width:100%;aspect-ratio:16/9;
+      background:var(--bg2);
+      border:.5px solid var(--fg08);
+      display:flex;align-items:center;justify-content:center;
+      margin-bottom:1.2rem;
+    }
+    .artist-photo-placeholder span{font-size:9px;color:var(--fg15);letter-spacing:.08em}
+
+    .artist-name{
+      font-family:var(--serif);
+      font-size:1.15rem;color:var(--fg);
+      margin-bottom:.5rem;line-height:1.3;
+    }
+    .artist-desc{
+      font-size:12.5px;color:var(--fg40);
+      line-height:1.7;margin-bottom:1.1rem;
+    }
+    .artist-link{
+      font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+      color:var(--fg25);text-decoration:none;
+      border-bottom:.5px solid var(--fg15);padding-bottom:2px;
+      transition:color .2s,border-color .2s;display:inline-block;
+    }
+    .artist-link:hover{color:var(--accent);border-color:var(--accent)}
+
+    /* Carrusel nav */
+    .carousel-nav{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:.8rem 1.5rem;
+      border-top:.5px solid var(--fg08);
+      flex-shrink:0;
+    }
+    .carousel-nav.hidden{visibility:hidden}
+    .carousel-btn{
+      background:none;border:.5px solid var(--fg15);
+      color:var(--fg40);cursor:pointer;
+      width:28px;height:28px;
+      display:flex;align-items:center;justify-content:center;
+      font-size:14px;line-height:1;
+      transition:border-color .2s,color .2s;
+      font-family:var(--sans);
+    }
+    .carousel-btn:hover{border-color:var(--accent);color:var(--accent)}
+    .carousel-btn:disabled{opacity:.2;cursor:default;pointer-events:none}
+    .carousel-counter{font-size:10px;color:var(--fg25);letter-spacing:.08em}
+
+    /* ── WRITING ── */
+    .writing-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:2rem}
+    .writing-item{border:.5px solid var(--fg08);padding:1.5rem;transition:border-color .2s}
+    .writing-item:hover{border-color:var(--fg25)}
+    .writing-type{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--fg25);margin-bottom:.8rem;display:block}
+    .writing-title{font-family:var(--serif);font-size:1.05rem;color:var(--fg);margin-bottom:.4rem;line-height:1.3;font-style:italic;display:block}
+    .writing-subject{font-size:11.5px;color:var(--fg25);margin-bottom:.8rem;line-height:1.4;display:block}
+    .writing-desc{font-size:12px;color:rgba(240,237,230,.30);line-height:1.65;margin-bottom:1rem}
+    .writing-link{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--fg25);text-decoration:none;border-bottom:.5px solid var(--fg15);padding-bottom:2px;transition:color .2s,border-color .2s}
+    .writing-link:hover{color:var(--accent);border-color:var(--accent)}
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:1024px){
+      .map-layout{grid-template-columns:1fr}
+      .info-panel{position:static;margin-top:2rem;min-height:0}
+      .circulation-grid{grid-template-columns:1fr;gap:2rem}
+    }
+    @media(max-width:600px){
+      .page-header{padding:3rem 1.5rem 2.5rem}
+      .section{padding:2.5rem 1.5rem}
+      nav{padding:0 1rem}
+      .nav-links a{padding:0 .5rem;font-size:10px}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">JLC</a>
+  <ul class="nav-links">
+    <li><a href="/">About Me</a></li>
+    <li><a href="/interactive">Interactive &amp; Generative</a></li>
+    <li><a href="/sound">Sound</a></li>
+    <li><a href="/documentary">Documentary &amp; Installation</a></li>
+    <li><a href="/research" class="active">Research &amp; Activism</a></li>
+    <li><a href="/portfolio">Portfolio</a></li>
+  </ul>
+  <a href="mailto:cenicerojaviera@gmail.com" class="nav-contact">Contact</a>
+</nav>
+
+<!-- HEADER -->
+<header class="page-header">
+  <span class="page-eyebrow">Research &amp; Activism</span>
+  <h1 class="page-title">Visibility, Archive,<br>and the Politics of Memory</h1>
+  <p class="page-statement">
+    In my research I encountered audiovisual works that once circulated but are now very difficult to find, along with others that were directly censored or removed from any possibility of reaching an audience. The distance between production, reception and memory is not accidental: it is the result of <em>economic, institutional and political decisions</em>. My research practice seeks to intervene in that distance, recovering, circulating and debating the work of artists and ideas that allow us to think the present from places the mainstream does not enable.
+  </p>
+</header>
+
+<!-- 01 CIRCULATION -->
+<section class="section">
+  <span class="section-label">01 · Circulation</span>
+  <div class="circulation-grid">
+    <div>
+      <div class="circ-img-wrap">
+        <!-- <img src="assets/luz-mala.jpg" alt="Luz Mala"> -->
+        <span>Luz Mala (image)</span>
+      </div>
+      <p class="circ-name">Luz Mala</p>
+      <p class="circ-meta">Film debate &amp; circulation · Buenos Aires · 2025 –</p>
+      <p class="circ-text">An independent film screening and debate initiative founded in 2025, organised by graduates of Image and Sound Design at UBA. Luz Mala starts from a premise: the absence of a film from distribution circuits is never neutral. Through thematic series (Palestinian cinema, feminist cinema, Latin American cinema), it builds the conditions for collective debate around films that dominant platforms do not distribute and the industry does not recover.</p>
+      <a href="https://www.instagram.com/luzmalacine/" target="_blank" rel="noreferrer" class="circ-link">Instagram ↗</a>
+    </div>
+    <div>
+      <div class="circ-img-wrap">
+        <!-- <img src="assets/silbando.jpg" alt="Silbando Bembas"> -->
+        <span>Silbando Bembas (image)</span>
+      </div>
+      <p class="circ-name">Silbando Bembas</p>
+      <p class="circ-meta">Militant cinema collective · Buenos Aires &amp; Mar del Plata · 2007 –</p>
+      <p class="circ-text">A militant cinema collective based in Buenos Aires and Mar del Plata, active since 2007. Clasista, internationalist and feminist. It does not produce cinema for festivals or the market: it produces political tools in service of concrete struggles, whether that means workers on strike, communities in conflict or organised sectors. Each material responds to a specific objective and recipient. Authorship is collective at every stage: pre-production, shooting, editing, distribution and theoretical discussion of practice. Since 2026 I participate in scriptwriting, editing and distribution.</p>
+      <a href="https://www.instagram.com/silbandobembas/" target="_blank" rel="noreferrer" class="circ-link">Instagram ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- 02 RESEARCH / IDIS + MAP -->
+<section class="section">
+  <span class="section-label">02 · Research</span>
+  <p class="idis-title">IDIS</p>
+  <p class="idis-meta">Investigaciones sobre el Diseño de Imagen y Sonido · Research archive</p>
+  <p class="idis-intro">
+    My research work at <a href="https://proyectoidis.org/" target="_blank" rel="noreferrer" class="idis-link">IDIS</a> was driven by the intention to expand the archive by incorporating countries and artistic contexts from the Americas not yet represented. While researching artistic production in South and Central America, I identified recurring themes related to censorship, forced displacement, restricted mobility, and the proximity of violence and death. These conditions shape not only the content of the works but also their modes of production, circulation, and survival. Working within such environments reveals how artistic and design practices emerge under extreme material and political constraints, where visibility is fragile and preservation is scarce.
+  </p>
+
+  <div class="map-layout">
+    <!-- MAP -->
+    <div class="map-frame">
+      <div class="map-loading" id="map-loading">Loading map</div>
+      <svg id="latam-map" viewBox="0 0 520 640" xmlns="http://www.w3.org/2000/svg"></svg>
+    </div>
+
+    <!-- INFO PANEL -->
+    <div class="info-panel" id="info-panel">
+
+      <!-- Empty state -->
+      <div class="panel-empty" id="panel-empty">
+        <div class="panel-empty-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <circle cx="8" cy="8" r="6" stroke="#f0ede6" stroke-width=".8"/>
+            <path d="M8 5v4M8 11v.5" stroke="#f0ede6" stroke-width=".8" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <p>Hover over a highlighted country<br>to explore the archive</p>
+      </div>
+
+      <!-- Loaded state -->
+      <div class="panel-loaded" id="panel-loaded">
+        <div class="panel-country-label" id="panel-country-label"></div>
+        <div class="carousel">
+          <div class="carousel-track" id="carousel-track"></div>
+          <div class="carousel-nav" id="carousel-nav">
+            <button class="carousel-btn" id="btn-prev" aria-label="Previous">&#8592;</button>
+            <span class="carousel-counter" id="carousel-counter"></span>
+            <button class="carousel-btn" id="btn-next" aria-label="Next">&#8594;</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 03 WRITING -->
+<section class="section">
+  <span class="section-label">03 · Writing</span>
+  <div class="writing-grid">
+    <div class="writing-item">
+      <span class="writing-type">Academic essay</span>
+      <span class="writing-title">Indeterminacy between Fiction and Documentary as a Form of Subjectivity in Contemporary Argentine Cinema</span>
+      <span class="writing-subject">Martín Rejtman · Nele Wohlatz · Argentina</span>
+      <p class="writing-desc">Analysis of how the New Argentine Cinema uses the indetermination between documentary and fiction as a form of subjectivity. Case studies: <em>Los guantes mágicos</em> (2003) and <em>El futuro perfecto</em> (2016).</p>
+      <a href="https://docs.google.com/document/d/1FeWVCB1crQKH0YJ5nMAJuVaR68PnjVH3mDbivKGvs4s/edit?usp=sharing" target="_blank" rel="noreferrer" class="writing-link">Read essay ↗</a>
+    </div>
+    <div class="writing-item">
+      <span class="writing-type">Monograph</span>
+      <span class="writing-title">Metafilmic Strategies and Non-Fiction Reflexivity</span>
+      <span class="writing-subject">Agnès Varda · <em>Les plages d'Agnès</em> (2008)</span>
+      <p class="writing-desc">The performative and reflexive dimension of the film through seven metafilmic resources, drawing on García Martínez and Weinrichter.</p>
+      <a href="https://docs.google.com/document/d/1sIfS53Z1_Bd6b8bUUyYNYmp8lpv_5p31P6nKCZwEmzQ/edit?usp=sharing" target="_blank" rel="noreferrer" class="writing-link">Read ↗</a>
+    </div>
+    <div class="writing-item">
+      <span class="writing-type">Monograph</span>
+      <span class="writing-title">The Marvelous as Everyday Experience</span>
+      <span class="writing-subject">Rainer Sarnet · <em>November</em> (2017)</span>
+      <p class="writing-desc">Analysis linking the film to Duby and Le Goff's reflections on the marvelous in medieval culture and its function as a collective survival mechanism.</p>
+      <a href="https://docs.google.com/document/d/1JWepWWFEgLMA4CUTgt03V-uuiM4AeWCf9FCLnVXSm20/edit?usp=sharing" target="_blank" rel="noreferrer" class="writing-link">Read ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- d3 + topojson-client: used only to fetch real Natural Earth boundaries and project them into the SVG at runtime -->
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
+<script>
+// ── DATA ─────────────────────────────────────────────────────────
+// Keyed by ISO 3166-1 numeric code (matches the "id" field in the
+// Natural Earth / world-atlas topology), so it lines up 1:1 with the
+// country geometry with no name-matching guesswork.
+// Add photo: replace photo:"" with photo:"assets/your-image.jpg"
+const ARCHIVE = {
+  "840": { // United States
+    country: "United States",
+    artists: [
+      {
+        name: "Artist at Risk Connections (ARC)",
+        desc: "Artist at Risk Connections (ARC) is an international initiative that supports artists across Latin America and the Caribbean who face censorship, persecution or human rights violations because of their work. Through its Protection of Artists at Risk programme, the network documents each case, raises international visibility and coordinates legal, institutional or relocation support when necessary. Bringing together human rights organizations, cultural institutions and advocacy groups, ARC highlights artistic freedom as a fundamental right while amplifying voices that governments or other actors attempt to silence.",
+        url: "https://proyectoidis.org/proteccion-de-artistas-en-riesgo/",
+        photo: ""
+      }
+    ]
+  },
+  "484": { // Mexico
+    country: "México",
+    artists: [
+      {
+        name: "Movimiento Pánico",
+        desc: "Movimiento Pánico was an avant-garde artistic movement founded in 1962 by Alejandro Jodorowsky, Fernando Arrabal and Roland Topor. Inspired by the Greek god Pan, it embraced terror, humor and confusion as creative principles, rejecting conventional artistic categories through performance, theatre, cinema and literature. Influenced by Surrealism and Antonin Artaud's Theatre of Cruelty, the movement celebrated contradiction, absurdity and black humor as ways of confronting a society in crisis. Although short-lived, its experimental spirit profoundly influenced later generations of filmmakers, writers and performance artists.",
+        url: "https://proyectoidis.org/movimiento-panico/",
+        photo: ""
+      }
+    ]
+  },
+  "222": { // El Salvador
+    country: "El Salvador",
+    artists: [
+      {
+        name: "NADIE",
+        desc: "NADIE (Javier Ramírez, El Salvador, 1985) is an artist working across drawing, poetry, photography, performance and digital media. His practice explores identity as a fluid construction shaped by life in contemporary El Salvador, using internet culture, satire and self-portraiture as creative tools. By appropriating emojis, digital interfaces and social media aesthetics, he transforms personal experience into political reflection, addressing queerness, belonging and survival while revealing how online spaces became essential for producing, sharing and preserving artistic voices beyond local limitations.",
+        url: "https://proyectoidis.org/nadie/",
+        photo: ""
+      },
+      {
+        name: "Central America Contemporary",
+        desc: "Central America Contemporary is an independent digital archive dedicated to contemporary art from the seven Central American countries and their diasporas. Founded by Salvadoran curators Julia Pimes and Óscar Díaz, it documents artists working across visual arts, performance, photography, video and sculpture, creating a valuable regional network that is often absent from mainstream international institutions. By connecting diverse practices within a single platform, the archive strengthens the visibility of Central American artistic production and encourages research beyond national borders.",
+        url: "https://proyectoidis.org/central-america-contemporary/",
+        photo: ""
+      }
+    ]
+  },
+  "558": { // Nicaragua
+    country: "Nicaragua",
+    artists: [
+      {
+        name: "Elyla Sinvergüenza",
+        desc: "Elyla Sinvergüenza (Fredman Barahona, Nicaragua, 1989) is a multidisciplinary artist whose practice combines drag, performance, photography and video to challenge political power, colonial legacies and gender norms. Drawing on queer theory and the history of the Sandinista Revolution, Elyla exposes the exclusion of LGBTQ+ identities within nationalist narratives. Works such as Machete Dress and public interventions in Managua reclaim revolutionary symbols through dissident bodies, while the collective Operación Queer expands these ideas into a broader decolonial platform that embraces gender fluidity and intersectional resistance.",
+        url: "https://proyectoidis.org/elyla-sinverguenza/",
+        photo: ""
+      }
+    ]
+  },
+  "591": { // Panama
+    country: "Panamá",
+    artists: [
+      {
+        name: "Rachelle Mozman",
+        desc: "Panamanian-American artist working across photography and video whose practice investigates the lasting effects of colonialism, inherited trauma and cultural identity. Drawing from her own family history and psychoanalytic research, she constructs dreamlike narratives that reveal how racism, migration and historical violence shape individual subjectivity. Works such as The Dying Cavendish revisit the legacy of the United Fruit Company in Panama, exposing the entanglement of corporate power, political intervention and media control in Central America. Through poetic visual language, Mozman connects personal memory with broader histories of exploitation and displacement.",
+        url: "https://proyectoidis.org/rachelle-mozman/",
+        photo: ""
+      }
+    ]
+  },
+  "340": { // Honduras
+    country: "Honduras",
+    artists: [
+      {
+        name: "Gabriel Vallecillo Márquez",
+        desc: "Gabriel Vallecillo Márquez (Honduras, 1976) is a visual artist whose work spans video poetry, projection mapping, live cinema and performance. His installations investigate violence, political instability and historical memory in Honduras, often using abandoned architecture as a metaphor for social collapse. Through works such as Precipitation of Tenderness and Liminal, he combines moving image and site-specific interventions to recover marginalized narratives, transforming spaces marked by neglect into poetic testimonies of resilience, loss and collective identity.",
+        url: "https://proyectoidis.org/gabriel-vallecillo-marquez/",
+        photo: ""
+      },
+      {
+        name: "Tegucigalpa, the City of the Frame",
+        desc: "Tegucigalpa, the City of the Frame is the fourth chapter of Manuel Torres Funes' essay Political Art of Honduras. Rather than focusing on a single artist, it examines how Tegucigalpa itself shapes contemporary artistic practice. Marked by political violence, social inequality, migration and environmental disasters, the city becomes an active force within the artworks. Through performances, photography, drawing and collective actions, the featured artists reveal how everyday life in Honduras is inseparable from the bodies, memories and political struggles represented in their work.",
+        url: "https://proyectoidis.org/tegucigalpa-la-ciudad-del-fotograma/",
+        photo: ""
+      }
+    ]
+  },
+  "032": { // Argentina
+    country: "Argentina",
+    artists: [
+      {
+        name: "Luz en la Piel",
+        desc: "Luz en la Piel was a participatory photography workshop developed in 2008 by Alejandra Marín, Constanza Cantero and the collective Yo No Fui inside the Ezeiza Women's Prison in Argentina. Using handmade pinhole cameras built from everyday materials, participants transformed photography into a tool for imagination rather than documentation. Their images challenged the restrictions of prison life, reimagining confined spaces and preserving personal memories while reclaiming authorship over their own representation. The project demonstrates photography's potential as a practice of resistance, dignity and creative agency.",
+        url: "https://proyectoidis.org/luz-en-la-piel/",
+        photo: ""
+      }
+    ]
+  }
+}
+
+// ISO 3166-1 numeric codes for the Americas, used only to keep the
+// map focused on this hemisphere. Anything not in this set is simply
+// not drawn, so no other continent's geometry appears.
+const AMERICAS_CODES = new Set([
+  "124","840","484","060","304", // North America
+  "084","188","222","320","340","558","591", // Central America
+  "044","052","192","214","332","388","780","028","212","308","662","670","659","044", // Caribbean
+  "032","068","076","152","170","218","328","600","604","740","858","862" // South America
+]);
+
+// ── MAP: fetch real boundaries and project them in-browser ───────
+const svg = document.getElementById("latam-map");
+const mapLoading = document.getElementById("map-loading");
+const WIDTH = 520, HEIGHT = 640;
+// Fixed padding around the projected map inside the fixed viewBox.
+// These are static values, not derived from the panel or from any
+// interaction, so the map's scale and position never change.
+// Vertical padding stays symmetric so the continent keeps clear
+// margins top (Canada/Alaska) and bottom (southern South America).
+const MAP_PAD_TOP = 88;
+const MAP_PAD_BOTTOM = 88;
+// Horizontal padding is asymmetric on purpose: a smaller left margin
+// and a larger right margin shift the whole map slightly toward the
+// left edge, using the empty space that used to sit unused there.
+const MAP_PAD_LEFT = 49;
+const MAP_PAD_RIGHT = 121;
+
+fetch("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json")
+  .then(res => res.json())
+  .then(world => {
+    const all = topojson.feature(world, world.objects.countries).features;
+    const features = all.filter(f => AMERICAS_CODES.has(f.id));
+
+    const projection = d3.geoMercator();
+    const path = d3.geoPath(projection);
+    projection.fitExtent(
+      [[MAP_PAD_LEFT, MAP_PAD_TOP], [WIDTH - MAP_PAD_RIGHT, HEIGHT - MAP_PAD_BOTTOM]],
+      { type: "FeatureCollection", features }
+    );
+
+    const svgNS = "http://www.w3.org/2000/svg";
+    features.forEach(f => {
+      const d = path(f);
+      if (!d) return;
+      const el = document.createElementNS(svgNS, "path");
+      el.setAttribute("d", d);
+      el.setAttribute("data-code", f.id);
+      el.setAttribute("data-name", f.properties.name);
+      if (ARCHIVE[f.id]) el.classList.add("has-data");
+      svg.appendChild(el);
+    });
+
+    mapLoading.classList.add("hidden");
+    initMapInteractions();
+  })
+  .catch(err => {
+    mapLoading.textContent = "Map unavailable, check your connection";
+    console.error("Could not load map data:", err);
+  });
+
+// ── PANEL LOGIC ──────────────────────────────────────────────────
+const panelEmpty  = document.getElementById("panel-empty")
+const panelLoaded = document.getElementById("panel-loaded")
+const panelLabel  = document.getElementById("panel-country-label")
+const track       = document.getElementById("carousel-track")
+const carouselNav = document.getElementById("carousel-nav")
+const btnPrev     = document.getElementById("btn-prev")
+const btnNext     = document.getElementById("btn-next")
+const counter     = document.getElementById("carousel-counter")
+
+const FADE_MS = 220
+
+let currentArtists = []
+let currentIndex   = 0
+let selectedPath   = null
+let currentCode    = null
+
+function renderArtist(artist, idx, total) {
+  const photoHTML = artist.photo
+    ? `<img class="artist-photo" src="${artist.photo}" alt="${artist.name}">`
+    : `<div class="artist-photo-placeholder"><span>Image coming soon</span></div>`
+
+  track.innerHTML = `
+    ${photoHTML}
+    <p class="artist-name">${artist.name}</p>
+    <p class="artist-desc">${artist.desc}</p>
+    <a href="${artist.url}" target="_blank" rel="noreferrer" class="artist-link">Open in IDIS ↗</a>
+  `
+  counter.textContent = `${idx + 1} / ${total}`
+  btnPrev.disabled = idx === 0
+  btnNext.disabled = idx === total - 1
+  carouselNav.classList.toggle("hidden", total <= 1)
+}
+
+// Cross-fades the panel content (~220ms) instead of swapping it instantly.
+function swapContent(fn) {
+  track.classList.add("fading")
+  panelLabel.classList.add("fading")
+  window.setTimeout(() => {
+    fn()
+    track.classList.remove("fading")
+    panelLabel.classList.remove("fading")
+  }, FADE_MS)
+}
+
+function selectCountry(code, el) {
+  const data = ARCHIVE[code]
+  if (!data) return
+  if (code === currentCode) return // already showing this country
+
+  // Update selected state on the map
+  if (selectedPath) selectedPath.classList.remove("selected")
+  selectedPath = el
+  el.classList.add("selected")
+  currentCode = code
+
+  const wasEmpty = panelEmpty.style.display !== "none" && !panelLoaded.classList.contains("visible")
+
+  const apply = () => {
+    panelEmpty.style.display = "none"
+    panelLoaded.classList.add("visible")
+    panelLabel.textContent = data.country
+    currentArtists = data.artists
+    currentIndex   = 0
+    renderArtist(currentArtists[0], 0, currentArtists.length)
+  }
+
+  if (wasEmpty) {
+    apply() // first selection: no need to fade out empty state
+  } else {
+    swapContent(apply)
+  }
+}
+
+// Carousel buttons (fade between artists too)
+btnPrev.addEventListener("click", () => {
+  if (currentIndex > 0) {
+    swapContent(() => {
+      currentIndex--
+      renderArtist(currentArtists[currentIndex], currentIndex, currentArtists.length)
+    })
+  }
+})
+btnNext.addEventListener("click", () => {
+  if (currentIndex < currentArtists.length - 1) {
+    swapContent(() => {
+      currentIndex++
+      renderArtist(currentArtists[currentIndex], currentIndex, currentArtists.length)
+    })
+  }
+})
+
+// ── MAP EVENTS ───────────────────────────────────────────────────
+// Bound once the real paths exist (after the fetch above resolves).
+function initMapInteractions() {
+  document.querySelectorAll("#latam-map path.has-data").forEach(el => {
+    const code = el.dataset.code
+
+    // Desktop: hover. Selection persists after the cursor leaves the
+    // map entirely. It only changes when another has-data country
+    // is hovered, so the panel stays readable while the visitor
+    // scrolls or moves the mouse away.
+    el.addEventListener("mouseenter", () => selectCountry(code, el))
+
+    // Mobile: tap
+    el.addEventListener("touchstart", e => {
+      e.preventDefault()
+      selectCountry(code, el)
+      document.getElementById("info-panel").scrollIntoView({behavior:"smooth", block:"nearest"})
+    }, { passive: false })
+  })
+}
+</script>
+
+</body>
+</html>
