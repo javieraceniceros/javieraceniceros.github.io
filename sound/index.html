@@ -23,7 +23,8 @@
       --sans:'DM Sans','Helvetica Neue',sans-serif;
       --serif:'DM Serif Display',Georgia,serif;
     }
-    body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-weight:300;min-height:100vh;overflow-x:hidden}
+    body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-weight:300;min-height:100vh;overflow-x:hidden;animation:pageFadeIn .7s ease both}
+    @keyframes pageFadeIn{from{opacity:0}to{opacity:1}}
 
     nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:var(--nav-h);border-bottom:.5px solid var(--fg08);background:rgba(10,10,10,.96);backdrop-filter:blur(10px);gap:1rem}
     .nav-logo{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--fg40);text-decoration:none;flex-shrink:0;font-weight:500}
@@ -33,10 +34,26 @@
     .nav-contact{font-size:11px;color:var(--fg25);text-decoration:none;letter-spacing:.04em;transition:color .2s;flex-shrink:0}
     .nav-contact:hover{color:var(--fg)}
 
-    .page-header{padding:5rem 2.5rem 4rem;border-bottom:.5px solid var(--fg08);max-width:900px}
+    .page-header{position:relative;padding:5rem 2.5rem 4rem;border-bottom:.5px solid var(--fg08);overflow:hidden}
+    .page-header-inner{position:relative;z-index:1;max-width:900px}
     .page-eyebrow{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--fg25);margin-bottom:1.5rem;display:block}
     .page-title{font-family:var(--serif);font-size:clamp(2rem,4vw,3.2rem);font-weight:400;line-height:1.05;color:var(--fg);margin-bottom:2rem}
     .page-statement{font-size:15px;line-height:1.9;color:var(--fg70);max-width:680px}
+    .header-decor{
+      position:absolute;
+      top:50%;right:5%;
+      width:27%;max-width:340px;
+      aspect-ratio:1/1;
+      object-fit:cover;
+      transform:translateY(-50%);
+      opacity:.85;
+      mix-blend-mode:lighten;
+      pointer-events:none;
+      z-index:0;
+    }
+    @media(max-width:1024px){
+      .header-decor{display:none}
+    }
 
     .section{padding:4rem 2.5rem;border-bottom:.5px solid var(--fg08)}
     .section-label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--fg25);margin-bottom:2rem;display:block}
@@ -77,6 +94,7 @@
     .game-card:hover{border-color:var(--fg25)}
     .game-thumb{width:100%;aspect-ratio:16/9;background:var(--bg2);overflow:hidden}
     .game-thumb iframe{width:100%;height:100%;display:block;border:none}
+    .game-thumb img{width:100%;height:100%;object-fit:cover;display:block}
     .game-thumb-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
     .game-thumb-placeholder span{font-size:9px;color:var(--fg15);letter-spacing:.1em}
     .game-card-body{padding:1.2rem}
@@ -138,9 +156,12 @@
 
 <!-- HEADER -->
 <header class="page-header">
-  <span class="page-eyebrow">Sound</span>
-  <h1 class="page-title">Sound as a Way<br>of Building Worlds</h1>
-  <p class="page-statement">My practice lies at the intersection of technical craft and sound design. From developing leitmotifs for videogame characters to recording dialogue, foley and ambience on film sets, as well as creating sound design and original scores for short films and trailers, I approach sound as a narrative tool that shapes the way audiovisual works are experienced.</p>
+  <img class="header-decor" src="sound-header.png" alt="" aria-hidden="true"/>
+  <div class="page-header-inner">
+    <span class="page-eyebrow">Sound</span>
+    <h1 class="page-title">Sound as a Way<br>of Building Worlds</h1>
+    <p class="page-statement">My practice lies at the intersection of technical craft and sound design. From developing leitmotifs for videogame characters to recording dialogue, foley and ambience on film sets, as well as creating sound design and original scores for short films and trailers, I approach sound as a narrative tool that shapes the way audiovisual works are experienced.</p>
+  </div>
 </header>
 
 <!-- 01 · REEL -->
@@ -221,7 +242,7 @@
     <!-- Paper Pets (compact) -->
     <div class="game-card compact">
       <div class="game-thumb">
-        <div class="game-thumb-placeholder"><span>No trailer available</span></div>
+        <img src="portadapaper1.png" alt="Paper Pets Add-on">
       </div>
       <div class="game-card-body">
         <span class="game-type">Minecraft Marketplace · Enchanted</span>
@@ -234,7 +255,7 @@
     <!-- Pizza Rush (compact) -->
     <div class="game-card compact">
       <div class="game-thumb">
-        <div class="game-thumb-placeholder"><span>No trailer available</span></div>
+        <img src="portadapizza1.png" alt="Pizza Rush: Craftable Pizza Add-on">
       </div>
       <div class="game-card-body">
         <span class="game-type">Minecraft Marketplace · A Foxy Toast</span>
@@ -267,7 +288,7 @@
 
 <!-- STATEMENT -->
 <div class="statement-block">
-  <p class="statement-quote">"I approach sound as a narrative language that structures the audience's experience, builds atmosphere and communicates what the image alone cannot reveal."</p>
+  <p class="statement-quote">"I am interested in the instinctive power of sound: its ability to shape perception before conscious thought, giving images emotional weight, spatial presence and narrative meaning they cannot generate alone."</p>
  
 </div>
 
