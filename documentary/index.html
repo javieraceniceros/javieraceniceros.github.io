@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Installation &amp; Documentary · Javiera Luna Ceniceros</title>
+  <meta name="description" content="Installation and documentary practice, centred on the immersive documentary installation Correspondencia de Madre."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#0a0a0a;--bg2:#111;--bg3:#161616;
+      --fg:#f0ede6;
+      --fg70:rgba(240,237,230,.70);
+      --fg40:rgba(240,237,230,.40);
+      --fg25:rgba(240,237,230,.25);
+      --fg15:rgba(240,237,230,.15);
+      --fg08:rgba(240,237,230,.08);
+      --accent:#CFF9FE;
+      --nav-h:52px;
+      --panel-w:420px;
+      --ease:cubic-bezier(.22,.61,.36,1);
+      --sans:'DM Sans','Helvetica Neue',sans-serif;
+      --serif:'DM Serif Display',Georgia,serif;
+    }
+    body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-weight:300;min-height:100vh;overflow-x:hidden;animation:pageFadeIn .7s ease both}
+    @keyframes pageFadeIn{from{opacity:0}to{opacity:1}}
+
+    /* ── NAV ── */
+    nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:var(--nav-h);border-bottom:.5px solid var(--fg08);background:rgba(10,10,10,.96);backdrop-filter:blur(10px);gap:1rem}
+    .nav-logo{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--fg40);text-decoration:none;flex-shrink:0;font-weight:500}
+    .nav-links{display:flex;align-items:center;list-style:none}
+    .nav-links a{display:flex;align-items:center;height:var(--nav-h);padding:0 .9rem;font-size:11px;letter-spacing:.04em;color:var(--fg40);text-decoration:none;border-bottom:1.5px solid transparent;transition:color .2s,border-color .2s;white-space:nowrap}
+    .nav-links a:hover,.nav-links a.active{color:var(--fg);border-bottom-color:var(--fg)}
+    .nav-contact{font-size:11px;color:var(--fg25);text-decoration:none;letter-spacing:.04em;transition:color .2s;flex-shrink:0}
+    .nav-contact:hover{color:var(--fg)}
+
+    /* ── HEADER ── */
+    .page-header{position:relative;padding:5rem 2.5rem 4rem;border-bottom:.5px solid var(--fg08);overflow:hidden}
+    .page-header-inner{position:relative;z-index:1;max-width:900px}
+    .header-decor{
+      position:absolute;
+      top:50%;right:5%;
+      width:27%;max-width:340px;
+      aspect-ratio:1/1;
+      object-fit:cover;
+      transform:translateY(-50%);
+      opacity:.85;
+      mix-blend-mode:lighten;
+      pointer-events:none;
+      z-index:0;
+    }
+    @media(max-width:1024px){
+      .header-decor{display:none}
+    }
+    .page-eyebrow{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--fg25);margin-bottom:1.5rem;display:block}
+    .page-title{font-family:var(--serif);font-size:clamp(2rem,4vw,3.2rem);font-weight:400;line-height:1.05;color:var(--fg);margin-bottom:2rem}
+    .page-statement{font-size:15px;line-height:1.9;color:var(--fg70);max-width:680px}
+
+    /* ── SECTIONS ── */
+    .section{padding:4rem 2.5rem;border-bottom:.5px solid var(--fg08)}
+    .section-label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--fg25);margin-bottom:2rem;display:block}
+
+    /* PROJECT BLOCK (shared pattern with sound.html) */
+    .project{max-width:800px;margin-bottom:2rem}
+    .project-name{font-family:var(--serif);font-size:1.6rem;font-weight:400;color:var(--fg);margin-bottom:.4rem;line-height:1.2}
+    .project-meta{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--fg25);margin-bottom:1.2rem}
+    .project-text{font-size:13.5px;line-height:1.85;color:var(--fg70);margin-bottom:1.2rem}
+    .hero-photo{width:100%;max-width:800px;aspect-ratio:3/2;background:var(--bg2);border:.5px solid var(--fg08);overflow:hidden;margin-bottom:2rem}
+    .hero-photo img{width:100%;height:100%;object-fit:cover;display:block}
+    .hero-caption{font-size:10px;letter-spacing:.06em;color:var(--fg25);max-width:800px;margin:-1.6rem 0 2rem}
+
+    .synopsis-placeholder{border:1px dashed var(--fg15);padding:1.2rem 1.4rem;font-size:12.5px;line-height:1.7;color:var(--fg40);font-style:italic;max-width:800px;margin-bottom:2rem}
+
+    /* ── HOUSE LAYOUT (same architecture as the research.html map) ── */
+    .house-layout{display:grid;grid-template-columns:1fr var(--panel-w);gap:2.5rem;align-items:start}
+    .house-frame{position:relative;width:100%}
+    #house-svg{width:100%;height:auto;display:block;overflow:visible}
+    .house-hint{font-size:11px;color:var(--fg25);letter-spacing:.04em;margin-top:1rem;max-width:800px}
+
+    /* House zones */
+    .zone{fill:#1a1a1a;stroke:rgba(240,237,230,.15);stroke-width:1;cursor:pointer;transition:fill .32s var(--ease), opacity .32s var(--ease);}
+    .zone:hover,.zone.selected{fill:var(--accent)}
+    .zone-static{fill:#141414;stroke:rgba(240,237,230,.1);stroke-width:1;pointer-events:none}
+    .zone-static-photo{opacity:.16;pointer-events:none}
+    #house-svg.has-selection .zone:not(.selected){opacity:.4}
+    #house-svg.has-selection .zone-static{opacity:.4}
+    .house-furniture{fill:none;stroke:rgba(240,237,230,.35);stroke-width:1.2;pointer-events:none}
+    .zone-photo{opacity:0;transition:opacity .32s var(--ease);pointer-events:none}
+    .zone-photo.selected{opacity:1}
+    .house-outline{fill:none;stroke:rgba(240,237,230,.5);stroke-width:1.5}
+    .house-label{font-family:var(--sans);font-size:9px;letter-spacing:.08em;fill:rgba(240,237,230,.3);pointer-events:none;text-transform:uppercase}
+
+    /* ── INFO PANEL (reused pattern from research.html) ── */
+    .info-panel{border:.5px solid var(--fg08);background:var(--bg3);min-height:340px;display:flex;flex-direction:column}
+    .panel-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;padding:2.5rem;text-align:center}
+    .panel-empty-icon{width:40px;height:40px;border:.5px solid var(--fg15);border-radius:50%;display:flex;align-items:center;justify-content:center}
+    .panel-empty-icon svg{opacity:.3}
+    .panel-empty p{font-size:12px;color:var(--fg25);line-height:1.6;letter-spacing:.04em}
+
+    .panel-loaded{display:none;flex-direction:column;flex:1}
+    .panel-loaded.visible{display:flex}
+    .panel-room-label{padding:.9rem 1.4rem;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);border-bottom:.5px solid var(--fg08);flex-shrink:0;opacity:1;transition:opacity .22s var(--ease)}
+    .panel-room-label.fading{opacity:0}
+
+    .panel-media{flex:1;padding:1.4rem;opacity:1;transition:opacity .22s var(--ease)}
+    .panel-media.fading{opacity:0}
+    .media-gif{width:100%;aspect-ratio:4/3;background:var(--bg2);border:.5px solid var(--fg08);overflow:hidden;margin-bottom:.8rem;display:flex;align-items:center;justify-content:center}
+    .media-gif img{width:100%;height:100%;object-fit:cover;display:block}
+    .media-gif span{font-size:9px;color:var(--fg15);letter-spacing:.08em}
+    .media-caption{font-size:12px;line-height:1.7;color:var(--fg70)}
+
+    /* ── SECONDARY PROJECT (El Vecino, matches Grupo X Films pattern) ── */
+    .secondary-block{max-width:700px;padding-top:3rem;margin-top:1rem;border-top:.5px solid var(--fg08)}
+    .secondary-label{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--fg25);margin-bottom:1rem;display:block}
+    .secondary-name{font-family:var(--serif);font-size:1.2rem;color:var(--fg);margin-bottom:.3rem}
+    .secondary-meta{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--fg25);margin-bottom:1rem}
+    .secondary-text{font-size:13px;line-height:1.8;color:var(--fg70);margin-bottom:1.2rem}
+    .video-wrap-sm{width:100%;max-width:640px;aspect-ratio:16/9;background:var(--bg2);border:.5px solid var(--fg08);overflow:hidden}
+    .video-wrap-sm iframe{width:100%;height:100%;display:block;border:none}
+
+    /* ── COMPACT CREDIT (Libertée, Égalité y Huevos, matches El Tinte pattern) ── */
+    .credit-block{max-width:900px;background:var(--bg3);border:.5px solid var(--fg08);padding:1.6rem 1.8rem}
+    .credit-grid{display:grid;grid-template-columns:1fr 260px;gap:2rem;align-items:start}
+    .credit-photo{width:100%;aspect-ratio:3/4;background:var(--bg2);border:.5px solid var(--fg08);overflow:hidden}
+    .credit-photo img{width:100%;height:100%;object-fit:cover;display:block}
+    @media(max-width:860px){.credit-grid{grid-template-columns:1fr}}
+    .credit-label{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--fg25);margin-bottom:.6rem;display:block}
+    .credit-title{font-family:var(--serif);font-size:1.05rem;color:var(--fg);margin-bottom:.3rem}
+    .credit-meta{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--fg25);margin-bottom:.9rem}
+    .credit-text{font-size:12.5px;line-height:1.8;color:var(--fg70);margin-bottom:1rem}
+    .credit-link{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--fg25);text-decoration:none;border-bottom:.5px solid var(--fg15);padding-bottom:2px;transition:color .2s,border-color .2s}
+    .credit-link:hover{color:var(--accent);border-color:var(--accent)}
+    .credit-links{display:flex;gap:1.5rem;flex-wrap:wrap}
+    .sponsors-strip{width:100%;max-width:520px;margin:1.2rem 0 1.4rem;opacity:.9}
+    .sponsors-strip img{width:100%;height:auto;display:block}
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:960px){
+      .house-layout{grid-template-columns:1fr}
+      .info-panel{margin-top:2rem;min-height:0}
+    }
+    @media(max-width:600px){
+      .page-header{padding:3rem 1.5rem 2.5rem}
+      .section{padding:2.5rem 1.5rem}
+      nav{padding:0 1rem}
+      .nav-links a{padding:0 .5rem;font-size:10px}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">JLC</a>
+  <ul class="nav-links">
+    <li><a href="/">About Me</a></li>
+    <li><a href="/interactive">Interactive &amp; Generative</a></li>
+    <li><a href="/sound">Sound</a></li>
+    <li><a href="/documentary" class="active">Documentary &amp; Installation</a></li>
+    <li><a href="/research">Research &amp; Activism</a></li>
+    <li><a href="/portfolio">Portfolio</a></li>
+  </ul>
+  <a href="mailto:cenicerojaviera@gmail.com" class="nav-contact">Contact</a>
+</nav>
+
+<!-- HEADER -->
+<header class="page-header">
+  <img class="header-decor" src="documentary-header.png" alt="" aria-hidden="true"/>
+  <div class="page-header-inner">
+    <span class="page-eyebrow">Installation &amp; Documentary</span>
+    <h1 class="page-title">Between Document<br>and Space</h1>
+    <p class="page-statement">My documentary and installation practice is grounded in a shared interest in reconstructed identity: how a person, a family, or a memory can be pieced together through fragments, objects, voices, and archival images.</p>
+  </div>
+</header>
+
+<!-- 01 · CORRESPONDENCIA DE MADRE (main piece) -->
+<section class="section">
+  <span class="section-label">01 · Immersive documentary installation</span>
+
+  <div class="project">
+    <p class="project-name">Correspondence from a Mother</p>
+    <p class="project-meta">Creative Direction &amp; Installation Design · Buenos Aires · Presented at MAGMA, CheLA · 2021</p>
+    <p class="project-text">My work encompassed creative direction and spatial design, archival digitisation and transfer to Super 8, the curatorial development of written materials, the narrative structuring of the visitors' spatial journey, video editing, and collaboration on art direction.</p>
+  </div>
+
+  <div class="hero-photo">
+    <img src="correspondencia-chela.jpg" alt="Correspondencia de Madre, installation view at CheLA, 2021">
+  </div>
+  <p class="hero-caption">Installation view, MAGMA at CheLA, 2021. A letter fragment projected alongside intervened Super 8 footage.</p>
+
+  <div class="project">
+    <p class="project-text">An interactive installation set within the home of a woman grieving her estranged daughter. The viewer assumes the role of a detective, moving through the different spaces while gathering traces of the character's past: letters, photographs, notes, underlined magazines, and other objects arranged for examination. These elements reveal her mental state and obsessions, with each space representing a different stage of her grieving process. The experience shifts according to the path each visitor takes and the elements they choose to engage with.</p>
+    <p class="project-text">Projections onto the walls display transcriptions of the original letters alongside images transferred from Super 8 footage, working together with the spatial environment to construct the character's narrative and inner conflict. The installation unfolds across five spaces following a predetermined sequence, while also operating as a loop, allowing visitors to navigate the work non-linearly and return to previously visited spaces.</p>
+  </div>
+
+  <!-- INTERACTIVE HOUSE -->
+  <div class="house-layout">
+    <div class="house-frame">
+      <svg id="house-svg" viewBox="0 0 900 560" xmlns="http://www.w3.org/2000/svg">
+
+        <!-- Roof (decorative, non-interactive) -->
+        <g class="house-furniture">
+          <path d="M100,100 L450,30 L800,100" />
+          <rect x="330" y="35" width="60" height="45" fill="#141414" stroke="rgba(240,237,230,.3)" />
+        </g>
+
+        <!-- Outer walls -->
+        <rect class="house-outline" x="100" y="100" width="700" height="420" />
+        <!-- Floor divider -->
+        <line class="house-outline" x1="100" y1="310" x2="800" y2="310" />
+
+        <!-- ── UPPER FLOOR ── -->
+
+        <!-- Bathroom (static, non-interactive, small) -->
+        <rect class="zone-static" x="101" y="101" width="70" height="208" />
+        <image class="zone-static-photo" x="101" y="101" width="70" height="208" href="bano.jpg" preserveAspectRatio="xMidYMid slice" />
+        <g class="house-furniture">
+          <rect x="115" y="235" width="24" height="30" rx="4" />
+          <ellipse cx="127" cy="258" rx="12" ry="7" />
+        </g>
+        <text class="house-label" x="107" y="118">Bath</text>
+
+        <!-- Hallway gap (static) -->
+        <rect class="zone-static" x="171" y="101" width="159" height="208" />
+
+        <!-- Stairs (interactive, spans both floors) -->
+        <rect class="zone" data-room="stairs" x="330" y="101" width="100" height="418" />
+        <g class="house-furniture">
+          <polyline points="340,500 340,470 360,470 360,440 380,440 380,410 400,410 400,380 420,380 420,350" fill="none" />
+          <line x1="345" y1="350" x2="345" y2="140" />
+        </g>
+        <image class="zone-photo" data-room="stairs" x="330" y="101" width="100" height="418" href="escalera.jpg" preserveAspectRatio="xMidYMid slice" />
+        <text class="house-label" x="345" y="118">Stairs</text>
+
+        <!-- Bedroom (interactive) -->
+        <rect class="zone" data-room="bedroom" x="430" y="101" width="369" height="208" />
+        <g class="house-furniture">
+          <rect x="470" y="200" width="130" height="70" />
+          <path d="M470,200 q15,-14 30,0" />
+          <rect x="450" y="230" width="16" height="30" />
+          <rect x="690" y="150" width="60" height="110" />
+          <line x1="720" y1="150" x2="720" y2="260" />
+          <rect x="760" y="140" width="30" height="90" />
+          <line x1="760" y1="140" x2="760" y2="230" />
+          <line x1="775" y1="140" x2="775" y2="230" />
+        </g>
+        <image class="zone-photo" data-room="bedroom" x="430" y="101" width="369" height="208" href="cuartodormir.jpg" preserveAspectRatio="xMidYMid slice" />
+        <text class="house-label" x="445" y="118">Main Bedroom</text>
+
+        <!-- ── GROUND FLOOR ── -->
+
+        <!-- Living room (interactive) -->
+        <rect class="zone" data-room="living" x="101" y="311" width="229" height="208" />
+        <g class="house-furniture">
+          <rect x="130" y="400" width="46" height="80" />
+          <line x1="130" y1="420" x2="176" y2="420" />
+          <line x1="130" y1="440" x2="176" y2="440" />
+          <rect x="220" y="420" width="90" height="14" />
+          <line x1="225" y1="434" x2="225" y2="460" />
+          <line x1="240" y1="434" x2="240" y2="460" />
+          <line x1="290" y1="434" x2="290" y2="460" />
+          <line x1="305" y1="434" x2="305" y2="460" />
+        </g>
+        <image class="zone-photo" data-room="living" x="101" y="311" width="229" height="208" href="comedor.jpg" preserveAspectRatio="xMidYMid slice" />
+        <text class="house-label" x="115" y="330">Living Room</text>
+
+        <!-- Kitchen (interactive) -->
+        <rect class="zone" data-room="kitchen" x="430" y="311" width="220" height="208" />
+        <g class="house-furniture">
+          <rect x="460" y="430" width="70" height="60" />
+          <circle cx="478" cy="450" r="7" />
+          <circle cx="502" cy="450" r="7" />
+          <rect x="545" y="400" width="55" height="90" />
+          <line x1="460" y1="400" x2="600" y2="400" />
+          <rect x="465" y="365" width="120" height="8" />
+        </g>
+        <image class="zone-photo" data-room="kitchen" x="430" y="311" width="220" height="208" href="cocina.jpg" preserveAspectRatio="xMidYMid slice" />
+        <text class="house-label" x="445" y="330">Kitchen</text>
+
+        <!-- Cluttered room (interactive) -->
+        <rect class="zone" data-room="cluttered" x="650" y="311" width="149" height="208" />
+        <g class="house-furniture">
+          <rect x="665" y="330" width="34" height="46" />
+          <rect x="710" y="440" width="36" height="30" />
+          <path d="M710,440 q8,-24 32,-16" />
+          <rect x="750" y="470" width="36" height="40" />
+          <path d="M690,395 q20,-10 45,5 M695,405 q18,-8 40,4" fill="none" />
+        </g>
+        <image class="zone-photo" data-room="cluttered" x="650" y="311" width="149" height="208" href="cuartoescombros.jpg" preserveAspectRatio="xMidYMid slice" />
+        <text class="house-label" x="660" y="330">Cluttered Room</text>
+
+        <!-- Foundation -->
+        <rect x="90" y="520" width="720" height="14" fill="#161616" stroke="rgba(240,237,230,.15)" stroke-width="1"/>
+      </svg>
+    </div>
+
+    <!-- INFO PANEL -->
+    <div class="info-panel" id="info-panel">
+      <div class="panel-empty" id="panel-empty">
+        <div class="panel-empty-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <circle cx="8" cy="8" r="6" stroke="#f0ede6" stroke-width=".8"/>
+            <path d="M8 5v4M8 11v.5" stroke="#f0ede6" stroke-width=".8" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <p>Hover over a room<br>to explore Correspondencia de Madre</p>
+      </div>
+      <div class="panel-loaded" id="panel-loaded">
+        <div class="panel-room-label" id="panel-room-label"></div>
+        <div class="panel-media" id="panel-media"></div>
+      </div>
+    </div>
+  </div>
+  <p class="house-hint">A vertical cross-section of the house where the installation took place. Hover over a room to see the material shown there.</p>
+</section>
+
+<!-- 02 · THE NEIGHBOR (secondary) -->
+<section class="section">
+  <div class="secondary-block" style="border-top:none;padding-top:0;margin-top:0">
+    <span class="secondary-label">02 · Also in Documentary</span>
+    <p class="secondary-name">The Neighbor</p>
+    <p class="secondary-meta">Animated Mockumentary · 2D Rotoscopy · Presented at MAGMA, CheLA, 2021</p>
+    <p class="secondary-text">An animated mockumentary that reconstructs the identity of a mysterious neighbor through WhatsApp voice messages shared within a neighborhood group, with each testimony offering a different version of the character. His true identity is never revealed. Like the rotoscoped figure itself, the character that emerges from these accounts is continuously constructed and undone through contradictory testimonies and subjective perceptions.</p>
+    <div class="video-wrap-sm">
+      <iframe src="https://player.vimeo.com/video/1215311621?title=0&amp;byline=0&amp;portrait=0" title="The Neighbor" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · LIBERTÉE, ÉGALITÉ Y HUEVOS (compact credit) -->
+<section class="section">
+  <span class="section-label">03 · Also Credited</span>
+  <div class="credit-block">
+    <div class="credit-grid">
+      <div>
+        <span class="credit-label">Production Credit</span>
+        <p class="credit-title">Libertée, Égalité y Huevos</p>
+        <p class="credit-meta">Documentary · Cecilia Paviolo Marcenac / Paisana Films</p>
+        <p class="credit-text">A frustrated director travels with her friends to her uncle Michel's hometown, where he is organising a 25,000-egg omelette. The shoot uncovers a hoax and puts the town's own history on trial.</p>
+        <p class="credit-text">My work encompassed production assistance, the curation and management of festival submissions, and the research, sourcing and management of public and private funding. Key funding secured includes the SAPCINE (Colombia) post-production grant awarded through Ibermedia, support from the Embassy of France in Argentina and Institut Français, and Fundación Williams.</p>
+        <div class="credit-links">
+          <a href="https://peliculapigue.wordpress.com" target="_blank" rel="noreferrer" class="credit-link">View project ↗</a>
+          <a href="https://www.instagram.com/peliculapigue/" target="_blank" rel="noreferrer" class="credit-link">Instagram ↗</a>
+        </div>
+      </div>
+      <div class="credit-photo">
+        <img src="libertee-photo.jpg" alt="Libertée, Égalité y Huevos">
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+// ── ROOM DATA ────────────────────────────────────────────────────
+// Each room has a single "media" field, the same file used for the
+// hover reveal on the house drawing. It can be a static image now
+// (jpg/png) and swapped for an animated .gif later with no code
+// changes needed, both render the same way through an <img> tag.
+const ROOMS = {
+  living: {
+    name: "Living Room",
+    media: "comedor.jpg",
+    caption: "The journey begins."
+  },
+  stairs: {
+    name: "Staircase",
+    media: "escalera.jpg",
+    caption: "The music and projections lead the way forward."
+  },
+  kitchen: {
+    name: "Kitchen",
+    media: "cocina.jpg",
+    caption: "The darkest corner of grief."
+  },
+  cluttered: {
+    name: "Cluttered Room",
+    media: "cuartoescombros.jpg",
+    caption: "Light emerges from the wreckage in the final stage."
+  },
+  bedroom: {
+    name: "Main Bedroom",
+    media: "cuartodormir.jpg",
+    caption: "Letters, memories, and a reconstructed intimacy."
+  }
+}
+
+// ── PANEL LOGIC ──────────────────────────────────────────────────
+const svgEl        = document.getElementById("house-svg")
+const panelEmpty    = document.getElementById("panel-empty")
+const panelLoaded   = document.getElementById("panel-loaded")
+const panelLabel    = document.getElementById("panel-room-label")
+const panelMedia    = document.getElementById("panel-media")
+
+const FADE_MS = 220
+let selectedEl   = null
+let currentRoom  = null
+
+function renderMedia(room) {
+  let html = room.media
+    ? `<div class="media-gif"><img src="${room.media}" alt="${room.name}"></div>`
+    : `<div class="media-gif"><span>Coming soon</span></div>`
+
+  html += `<p class="media-caption">${room.caption}</p>`
+  panelMedia.innerHTML = html
+}
+
+function swapContent(fn) {
+  panelMedia.classList.add("fading")
+  panelLabel.classList.add("fading")
+  window.setTimeout(() => {
+    fn()
+    panelMedia.classList.remove("fading")
+    panelLabel.classList.remove("fading")
+  }, FADE_MS)
+}
+
+function selectRoom(key, el) {
+  const room = ROOMS[key]
+  if (!room) return
+  if (key === currentRoom) return
+
+  if (selectedEl) selectedEl.classList.remove("selected")
+  selectedEl = el
+  el.classList.add("selected")
+  svgEl.classList.add("has-selection")
+  currentRoom = key
+
+  document.querySelectorAll(".zone-photo.selected").forEach(img => img.classList.remove("selected"))
+  const photo = document.querySelector(`.zone-photo[data-room="${key}"]`)
+  if (photo) photo.classList.add("selected")
+
+  const wasEmpty = panelEmpty.style.display !== "none" && !panelLoaded.classList.contains("visible")
+
+  const apply = () => {
+    panelEmpty.style.display = "none"
+    panelLoaded.classList.add("visible")
+    panelLabel.textContent = room.name
+    renderMedia(room)
+  }
+
+  if (wasEmpty) {
+    apply()
+  } else {
+    swapContent(apply)
+  }
+}
+
+document.querySelectorAll(".zone").forEach(el => {
+  const key = el.dataset.room
+  el.addEventListener("mouseenter", () => selectRoom(key, el))
+  el.addEventListener("touchstart", e => {
+    e.preventDefault()
+    selectRoom(key, el)
+    document.getElementById("info-panel").scrollIntoView({behavior:"smooth", block:"nearest"})
+  }, { passive: false })
+})
+</script>
+
+</body>
+</html>
