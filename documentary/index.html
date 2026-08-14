@@ -79,6 +79,8 @@
     .house-frame{position:relative;width:100%}
     #house-svg{width:100%;height:auto;display:block;overflow:visible}
     .house-hint{font-size:11px;color:var(--fg25);letter-spacing:.04em;margin-top:1rem;max-width:800px}
+    .house-hint a{color:var(--fg25);text-decoration:none;border-bottom:.5px solid var(--fg15);transition:color .2s,border-color .2s}
+    .house-hint a:hover{color:var(--accent);border-color:var(--accent)}
 
     /* House zones */
     .zone{fill:#1a1a1a;stroke:rgba(240,237,230,.15);stroke-width:1;cursor:pointer;transition:fill .32s var(--ease), opacity .32s var(--ease);}
@@ -107,7 +109,7 @@
 
     .panel-media{flex:1;padding:1.4rem;opacity:1;transition:opacity .22s var(--ease)}
     .panel-media.fading{opacity:0}
-    .media-gif{width:100%;aspect-ratio:4/3;background:var(--bg2);border:.5px solid var(--fg08);overflow:hidden;margin-bottom:.8rem;display:flex;align-items:center;justify-content:center}
+    .media-gif{width:100%;aspect-ratio:1152/648;background:var(--bg2);border:.5px solid var(--fg08);overflow:hidden;margin-bottom:.8rem;display:flex;align-items:center;justify-content:center}
     .media-gif img{width:100%;height:100%;object-fit:cover;display:block}
     .media-gif span{font-size:9px;color:var(--fg15);letter-spacing:.08em}
     .media-caption{font-size:12px;line-height:1.7;color:var(--fg70)}
@@ -123,10 +125,9 @@
 
     /* ── COMPACT CREDIT (Libertée, Égalité y Huevos, matches El Tinte pattern) ── */
     .credit-block{max-width:900px;background:var(--bg3);border:.5px solid var(--fg08);padding:1.6rem 1.8rem}
-    .credit-grid{display:grid;grid-template-columns:1fr 260px;gap:2rem;align-items:start}
-    .credit-photo{width:100%;aspect-ratio:3/4;background:var(--bg2);border:.5px solid var(--fg08);overflow:hidden}
+    .credit-photo{width:100%;max-width:520px;aspect-ratio:1200/896;background:var(--bg2);border:.5px solid var(--fg08);overflow:hidden;margin-bottom:1.4rem}
     .credit-photo img{width:100%;height:100%;object-fit:cover;display:block}
-    @media(max-width:860px){.credit-grid{grid-template-columns:1fr}}
+
     .credit-label{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--fg25);margin-bottom:.6rem;display:block}
     .credit-title{font-family:var(--serif);font-size:1.05rem;color:var(--fg);margin-bottom:.3rem}
     .credit-meta{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--fg25);margin-bottom:.9rem}
@@ -186,7 +187,7 @@
   </div>
 
   <div class="hero-photo">
-    <img src="correspondencia-chela.jpg" alt="Correspondencia de Madre, installation view at CheLA, 2021">
+    <img src="magmachela.png" alt="Correspondencia de Madre, installation view at CheLA, 2021">
   </div>
   <p class="hero-caption">Installation view, MAGMA at CheLA, 2021. A letter fragment projected alongside intervened Super 8 footage.</p>
 
@@ -231,7 +232,7 @@
           <polyline points="340,500 340,470 360,470 360,440 380,440 380,410 400,410 400,380 420,380 420,350" fill="none" />
           <line x1="345" y1="350" x2="345" y2="140" />
         </g>
-        <image class="zone-photo" data-room="stairs" x="330" y="101" width="100" height="418" href="escalera.jpg" preserveAspectRatio="xMidYMid slice" />
+        <image class="zone-photo" data-room="stairs" x="330" y="101" width="100" height="418" href="escalera.png" preserveAspectRatio="xMidYMid slice" />
         <text class="house-label" x="345" y="118">Stairs</text>
 
         <!-- Bedroom (interactive) -->
@@ -246,7 +247,7 @@
           <line x1="760" y1="140" x2="760" y2="230" />
           <line x1="775" y1="140" x2="775" y2="230" />
         </g>
-        <image class="zone-photo" data-room="bedroom" x="430" y="101" width="369" height="208" href="cuartodormir.jpg" preserveAspectRatio="xMidYMid slice" />
+        <image class="zone-photo" data-room="bedroom" x="430" y="101" width="369" height="208" href="cuartodormir.png" preserveAspectRatio="xMidYMid slice" />
         <text class="house-label" x="445" y="118">Main Bedroom</text>
 
         <!-- ── GROUND FLOOR ── -->
@@ -263,7 +264,7 @@
           <line x1="290" y1="434" x2="290" y2="460" />
           <line x1="305" y1="434" x2="305" y2="460" />
         </g>
-        <image class="zone-photo" data-room="living" x="101" y="311" width="229" height="208" href="comedor.jpg" preserveAspectRatio="xMidYMid slice" />
+        <image class="zone-photo" data-room="living" x="101" y="311" width="229" height="208" href="living.png" preserveAspectRatio="xMidYMid slice" />
         <text class="house-label" x="115" y="330">Living Room</text>
 
         <!-- Kitchen (interactive) -->
@@ -276,7 +277,7 @@
           <line x1="460" y1="400" x2="600" y2="400" />
           <rect x="465" y="365" width="120" height="8" />
         </g>
-        <image class="zone-photo" data-room="kitchen" x="430" y="311" width="220" height="208" href="cocina.jpg" preserveAspectRatio="xMidYMid slice" />
+        <image class="zone-photo" data-room="kitchen" x="430" y="311" width="220" height="208" href="cocina.png" preserveAspectRatio="xMidYMid slice" />
         <text class="house-label" x="445" y="330">Kitchen</text>
 
         <!-- Cluttered room (interactive) -->
@@ -288,7 +289,7 @@
           <rect x="750" y="470" width="36" height="40" />
           <path d="M690,395 q20,-10 45,5 M695,405 q18,-8 40,4" fill="none" />
         </g>
-        <image class="zone-photo" data-room="cluttered" x="650" y="311" width="149" height="208" href="cuartoescombros.jpg" preserveAspectRatio="xMidYMid slice" />
+        <image class="zone-photo" data-room="cluttered" x="650" y="311" width="149" height="208" href="cuartoescombros.png" preserveAspectRatio="xMidYMid slice" />
         <text class="house-label" x="660" y="330">Cluttered Room</text>
 
         <!-- Foundation -->
@@ -314,6 +315,7 @@
     </div>
   </div>
   <p class="house-hint">A vertical cross-section of the house where the installation took place. Hover over a room to see the material shown there.</p>
+  <p class="house-hint" style="margin-top:.5rem"><a href="https://www.youtube.com/watch?v=RjvREyI7dxI&t=122s" target="_blank" rel="noreferrer">Full walkthrough video ↗</a></p>
 </section>
 
 <!-- 02 · THE NEIGHBOR (secondary) -->
@@ -333,21 +335,17 @@
 <section class="section">
   <span class="section-label">03 · Also Credited</span>
   <div class="credit-block">
-    <div class="credit-grid">
-      <div>
-        <span class="credit-label">Production Credit</span>
-        <p class="credit-title">Libertée, Égalité y Huevos</p>
-        <p class="credit-meta">Documentary · Cecilia Paviolo Marcenac / Paisana Films</p>
-        <p class="credit-text">A frustrated director travels with her friends to her uncle Michel's hometown, where he is organising a 25,000-egg omelette. The shoot uncovers a hoax and puts the town's own history on trial.</p>
-        <p class="credit-text">My work encompassed production assistance, the curation and management of festival submissions, and the research, sourcing and management of public and private funding. Key funding secured includes the SAPCINE (Colombia) post-production grant awarded through Ibermedia, support from the Embassy of France in Argentina and Institut Français, and Fundación Williams.</p>
-        <div class="credit-links">
-          <a href="https://peliculapigue.wordpress.com" target="_blank" rel="noreferrer" class="credit-link">View project ↗</a>
-          <a href="https://www.instagram.com/peliculapigue/" target="_blank" rel="noreferrer" class="credit-link">Instagram ↗</a>
-        </div>
-      </div>
-      <div class="credit-photo">
-        <img src="libertee-photo.jpg" alt="Libertée, Égalité y Huevos">
-      </div>
+    <div class="credit-photo">
+      <img src="comohaceromelette.jpg" alt="Libertée, Égalité y Huevos">
+    </div>
+    <span class="credit-label">Production Credit</span>
+    <p class="credit-title">Libertée, Égalité y Huevos</p>
+    <p class="credit-meta">Documentary · Cecilia Paviolo Marcenac / Paisana Films</p>
+    <p class="credit-text">A frustrated director travels with her friends to her uncle Michel's hometown, where he is organising a 25,000-egg omelette. The shoot uncovers a hoax and puts the town's own history on trial.</p>
+    <p class="credit-text">My work encompassed production assistance, the curation and management of festival submissions, and the research, sourcing and management of public and private funding. Key funding secured includes the SAPCINE (Colombia) post-production grant awarded through Ibermedia, support from the Embassy of France in Argentina and Institut Français, and Fundación Williams.</p>
+    <div class="credit-links">
+      <a href="https://peliculapigue.wordpress.com" target="_blank" rel="noreferrer" class="credit-link">View project ↗</a>
+      <a href="https://www.instagram.com/peliculapigue/" target="_blank" rel="noreferrer" class="credit-link">Instagram ↗</a>
     </div>
   </div>
 </section>
@@ -361,27 +359,27 @@
 const ROOMS = {
   living: {
     name: "Living Room",
-    media: "comedor.jpg",
+    media: "livinggif.gif",
     caption: "The journey begins."
   },
   stairs: {
     name: "Staircase",
-    media: "escalera.jpg",
+    media: "escaleragif.gif",
     caption: "The music and projections lead the way forward."
   },
   kitchen: {
     name: "Kitchen",
-    media: "cocina.jpg",
+    media: "cocinagif.gif",
     caption: "The darkest corner of grief."
   },
   cluttered: {
     name: "Cluttered Room",
-    media: "cuartoescombros.jpg",
+    media: "escombrosgif1.gif",
     caption: "Light emerges from the wreckage in the final stage."
   },
   bedroom: {
     name: "Main Bedroom",
-    media: "cuartodormir.jpg",
+    media: "cuartogif.gif",
     caption: "Letters, memories, and a reconstructed intimacy."
   }
 }
