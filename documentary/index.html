@@ -46,7 +46,7 @@
       width:27%;max-width:340px;
       aspect-ratio:1/1;
       object-fit:cover;
-      transform:translateY(-50%);
+      transform:translateY(calc(-50% + 3px));
       opacity:.85;
       mix-blend-mode:lighten;
       pointer-events:none;
@@ -125,8 +125,10 @@
 
     /* ── COMPACT CREDIT (Libertée, Égalité y Huevos, matches El Tinte pattern) ── */
     .credit-block{max-width:900px;background:var(--bg3);border:.5px solid var(--fg08);padding:1.6rem 1.8rem}
-    .credit-photo{width:100%;max-width:520px;aspect-ratio:1200/896;background:var(--bg2);border:.5px solid var(--fg08);overflow:hidden;margin-bottom:1.4rem}
+    .credit-row{display:grid;grid-template-columns:1fr 260px;gap:2rem;align-items:center}
+    .credit-photo{width:100%;aspect-ratio:1200/896;background:var(--bg2);border:.5px solid var(--fg08);overflow:hidden}
     .credit-photo img{width:100%;height:100%;object-fit:cover;display:block}
+    @media(max-width:760px){.credit-row{grid-template-columns:1fr}}
 
     .credit-label{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--fg25);margin-bottom:.6rem;display:block}
     .credit-title{font-family:var(--serif);font-size:1.05rem;color:var(--fg);margin-bottom:.3rem}
@@ -189,7 +191,7 @@
   <div class="hero-photo">
     <img src="magmachela.png" alt="Correspondencia de Madre, installation view at CheLA, 2021">
   </div>
-  <p class="hero-caption">Installation view, MAGMA at CheLA, 2021. A letter fragment projected alongside intervened Super 8 footage.</p>
+  <p class="hero-caption">View of the installation adaptation presented at MAGMA, CheLA, 2021.</p>
 
   <div class="project">
     <p class="project-text">An interactive installation set within the home of a woman grieving her estranged daughter. The viewer assumes the role of a detective, moving through the different spaces while gathering traces of the character's past: letters, photographs, notes, underlined magazines, and other objects arranged for examination. These elements reveal her mental state and obsessions, with each space representing a different stage of her grieving process. The experience shifts according to the path each visitor takes and the elements they choose to engage with.</p>
@@ -199,7 +201,7 @@
   <!-- INTERACTIVE HOUSE -->
   <div class="house-layout">
     <div class="house-frame">
-      <svg id="house-svg" viewBox="0 0 900 560" xmlns="http://www.w3.org/2000/svg">
+      <svg id="house-svg" viewBox="0 25 900 514" xmlns="http://www.w3.org/2000/svg">
 
         <!-- Roof (decorative, non-interactive) -->
         <g class="house-furniture">
@@ -335,14 +337,18 @@
 <section class="section">
   <span class="section-label">03 · Also Credited</span>
   <div class="credit-block">
-    <div class="credit-photo">
-      <img src="comohaceromelette.jpg" alt="Libertée, Égalité y Huevos">
+    <div class="credit-row">
+      <div>
+        <span class="credit-label">Production Credit</span>
+        <p class="credit-title">Libertée, Égalité y Huevos</p>
+        <p class="credit-meta">Documentary · Cecilia Paviolo Marcenac / Paisana Films</p>
+        <p class="credit-text">A frustrated director travels with her friends to her uncle Michel's hometown, where he is organising a 25,000-egg omelette. The shoot uncovers a hoax and puts the town's own history on trial.</p>
+        <p class="credit-text">My work encompassed production assistance, the curation and management of festival submissions, and the research, sourcing and management of public and private funding. Key funding secured includes the SAPCINE (Colombia) post-production grant awarded through Ibermedia, support from the Embassy of France in Argentina and Institut Français, and Fundación Williams.</p>
+      </div>
+      <div class="credit-photo">
+        <img src="comohaceromelette.jpg" alt="Libertée, Égalité y Huevos">
+      </div>
     </div>
-    <span class="credit-label">Production Credit</span>
-    <p class="credit-title">Libertée, Égalité y Huevos</p>
-    <p class="credit-meta">Documentary · Cecilia Paviolo Marcenac / Paisana Films</p>
-    <p class="credit-text">A frustrated director travels with her friends to her uncle Michel's hometown, where he is organising a 25,000-egg omelette. The shoot uncovers a hoax and puts the town's own history on trial.</p>
-    <p class="credit-text">My work encompassed production assistance, the curation and management of festival submissions, and the research, sourcing and management of public and private funding. Key funding secured includes the SAPCINE (Colombia) post-production grant awarded through Ibermedia, support from the Embassy of France in Argentina and Institut Français, and Fundación Williams.</p>
     <div class="credit-links">
       <a href="https://peliculapigue.wordpress.com" target="_blank" rel="noreferrer" class="credit-link">View project ↗</a>
       <a href="https://www.instagram.com/peliculapigue/" target="_blank" rel="noreferrer" class="credit-link">Instagram ↗</a>
