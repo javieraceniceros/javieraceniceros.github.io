@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Interactive & Generative · Javiera Luna Ceniceros</title>
+  <meta name="description" content="AR games, generative video, real-time environments and 3D animation."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#0a0a0a;--bg2:#111;--bg3:#161616;
+      --fg:#f0ede6;
+      --fg70:rgba(240,237,230,.70);
+      --fg40:rgba(240,237,230,.40);
+      --fg25:rgba(240,237,230,.25);
+      --fg15:rgba(240,237,230,.15);
+      --fg08:rgba(240,237,230,.08);
+      --accent:#CFF9FE;
+      --nav-h:52px;
+      --sans:'DM Sans','Helvetica Neue',sans-serif;
+      --serif:'DM Serif Display',Georgia,serif;
+    }
+    body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-weight:300;min-height:100vh;overflow-x:hidden}
+
+    /* NAV */
+    nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:var(--nav-h);border-bottom:.5px solid var(--fg08);background:rgba(10,10,10,.96);backdrop-filter:blur(10px);gap:1rem}
+    .nav-logo{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--fg40);text-decoration:none;flex-shrink:0;font-weight:500}
+    .nav-links{display:flex;align-items:center;list-style:none}
+    .nav-links a{display:flex;align-items:center;height:var(--nav-h);padding:0 .9rem;font-size:11px;letter-spacing:.04em;color:var(--fg40);text-decoration:none;border-bottom:1.5px solid transparent;transition:color .2s,border-color .2s;white-space:nowrap}
+    .nav-links a:hover,.nav-links a.active{color:var(--fg);border-bottom-color:var(--fg)}
+    .nav-contact{font-size:11px;color:var(--fg25);text-decoration:none;letter-spacing:.04em;transition:color .2s;flex-shrink:0}
+    .nav-contact:hover{color:var(--fg)}
+
+    /* PAGE HEADER */
+    .page-header{padding:5rem 2.5rem 4rem;border-bottom:.5px solid var(--fg08);max-width:900px}
+    .page-eyebrow{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--fg25);margin-bottom:1.5rem;display:block}
+    .page-title{font-family:var(--serif);font-size:clamp(2rem,4vw,3.2rem);font-weight:400;line-height:1.05;color:var(--fg);margin-bottom:2rem}
+    .page-statement{font-size:15px;line-height:1.9;color:var(--fg70);max-width:680px}
+
+    /* SECTIONS */
+    .section{padding:4rem 2.5rem;border-bottom:.5px solid var(--fg08)}
+    .section-label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--fg25);margin-bottom:2rem;display:block}
+
+    /* VIDEO */
+    .video-wrap{width:100%;max-width:800px;aspect-ratio:16/9;background:var(--bg2);border:.5px solid var(--fg08);overflow:hidden;margin-bottom:1rem}
+    .video-wrap iframe{width:100%;height:100%;display:block;border:none}
+    .video-caption{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--fg25);max-width:800px;margin-bottom:.6rem;display:block}
+
+    /* PRIMARY PROJECT */
+    .project-name{font-family:var(--serif);font-size:1.4rem;font-weight:400;color:var(--fg);margin-bottom:.3rem}
+    .project-meta{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--fg25);margin-bottom:1rem}
+    .project-text{font-size:13.5px;line-height:1.85;color:var(--fg70);margin-bottom:1.2rem;max-width:800px}
+    .reflection{border-left:1px solid var(--fg15);padding-left:1.5rem;margin-bottom:1.8rem;max-width:800px}
+    .reflection-label{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--fg25);margin-bottom:.5rem;display:block}
+    .reflection-text{font-size:13px;line-height:1.85;color:var(--fg70);font-style:italic}
+
+    /* TECH TAGS */
+    .tech-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.5rem}
+    .tech-tag{font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--fg25);border:.5px solid var(--fg08);padding:3px 10px}
+
+    /* PROCESS GRID (Caligari + Cyborg) */
+    .process-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;max-width:800px}
+    .process-item{}
+    .process-label{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--fg25);margin-bottom:.8rem;display:block}
+    .process-name{font-family:var(--serif);font-size:1.05rem;color:var(--fg);margin-bottom:.3rem;line-height:1.2}
+    .process-meta{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--fg25);margin-bottom:.8rem}
+    .process-text{font-size:12.5px;line-height:1.8;color:var(--fg70);margin-bottom:1rem}
+    .video-wrap-sm{width:100%;aspect-ratio:16/9;background:var(--bg2);border:.5px solid var(--fg08);overflow:hidden;margin-bottom:.8rem}
+    .video-wrap-sm iframe{width:100%;height:100%;display:block;border:none}
+
+    /* GIF placeholder (1:1) */
+    .gif-wrap{width:100%;max-width:240px;aspect-ratio:1/1;background:var(--bg2);border:.5px solid var(--fg08);overflow:hidden;margin-top:.8rem;display:flex;align-items:center;justify-content:center}
+    .gif-wrap img{width:100%;height:100%;object-fit:cover;display:block}
+    .gif-placeholder{font-size:9px;color:var(--fg15);letter-spacing:.1em;text-align:center;padding:1rem}
+
+    /* WIP BLOCK — Lumina */
+    .wip-block{max-width:800px;border:.5px solid var(--fg08);background:var(--bg3);padding:2.5rem}
+    .wip-badge{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);border:.5px solid rgba(207,249,254,.2);padding:3px 10px;display:inline-block;margin-bottom:1.2rem}
+    .wip-name{font-family:var(--serif);font-size:1.3rem;color:var(--fg);margin-bottom:.3rem}
+    .wip-meta{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--fg25);margin-bottom:1rem}
+    .wip-text{font-size:13.5px;line-height:1.85;color:var(--fg70);margin-bottom:1.5rem}
+    .wip-media-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.5rem}
+    .wip-placeholder{width:100%;aspect-ratio:16/9;background:var(--bg2);border:.5px solid var(--fg08);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem}
+    .wip-placeholder span{font-size:9px;color:var(--fg15);letter-spacing:.1em}
+
+    /* STATEMENT */
+    .statement-block{padding:5rem 2.5rem;max-width:820px}
+    .statement-quote{font-family:var(--serif);font-style:italic;font-size:clamp(1.3rem,2.6vw,1.9rem);line-height:1.55;color:var(--fg);margin-bottom:1.8rem}
+    .statement-sub{font-size:14px;line-height:1.85;color:var(--fg70);max-width:680px}
+
+    @media(max-width:700px){
+      .process-grid{grid-template-columns:1fr}
+      .wip-media-grid{grid-template-columns:1fr}
+    }
+    @media(max-width:600px){
+      .page-header,.statement-block{padding:3rem 1.5rem 2.5rem}
+      .section{padding:2.5rem 1.5rem}
+      nav{padding:0 1rem}
+      .nav-links a{padding:0 .5rem;font-size:10px}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">JLC</a>
+  <ul class="nav-links">
+    <li><a href="/">About Me</a></li>
+    <li><a href="/interactive" class="active">Interactive &amp; Generative</a></li>
+    <li><a href="/sound">Sound</a></li>
+    <li><a href="/documentary">Documentary &amp; Installation</a></li>
+    <li><a href="/research">Research &amp; Activism</a></li>
+    <li><a href="/portfolio">Portfolio</a></li>
+  </ul>
+  <a href="mailto:cenicerojaviera@gmail.com" class="nav-contact">Contact</a>
+</nav>
+
+<!-- HEADER -->
+<header class="page-header">
+  <span class="page-eyebrow">Interactive &amp; Generative</span>
+  <h1 class="page-title">Augmented Reality,<br>Generative Systems<br>and 3D Environments</h1>
+  <p class="page-statement">My practice in interactive and generative media explores how technology can transform the way people experience space, identity and narrative. From augmented reality games to real-time data visualization and 3D animation, I work at the intersection of physical and digital environments.</p>
+</header>
+
+<!-- 01 QUIEN FUE EN EL 60 -->
+<section class="section">
+  <span class="section-label">01 · Augmented Reality</span>
+
+  <p class="project-name">¿Quién fue en el 60?</p>
+  <p class="project-meta">Project Direction · Buenos Aires · 2024–2025</p>
+
+  <div class="tech-tags">
+    <span class="tech-tag">Unity</span>
+    <span class="tech-tag">Vuforia SDK</span>
+    <span class="tech-tag">Photogrammetry</span>
+    <span class="tech-tag">AR</span>
+    <span class="tech-tag">Interactive Design</span>
+  </div>
+
+  <p class="project-text">An augmented reality investigation game where the player, acting as a bus line employee, must identify passengers who have underpaid their fares. With only fragmented clues, the player must reconstruct the puzzle and decide who is responsible, knowing that each mistake reduces their chances. The experience unfolds through a hybrid system combining physical evidence and tablet-based augmented reality. Physical objects were digitized using photogrammetry and implemented as recognition targets within the Vuforia SDK, enabling real-time activation of audiovisual content upon detection. Set within the urban landscape of Buenos Aires, the project explores moral ambiguity and the construction of guilt under conditions of incomplete information.</p>
+
+  <div class="reflection">
+    <span class="reflection-label">Role</span>
+    <p class="reflection-text">Project direction and visual concept; narrative design and interactive logic development; audiovisual design and sound composition; trailer conception and production.</p>
+  </div>
+
+  <span class="video-caption">¿Quién fue en el 60? · Trailer · 2025</span>
+  <div class="video-wrap">
+    <iframe src="https://player.vimeo.com/video/1219349707?color=CFF9FE&title=0&byline=0&portrait=0" title="Quien fue en el 60 trailer" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+  </div>
+
+  <!-- Space for gameplay video or screenshots — add when ready -->
+  <!-- <span class="video-caption">Gameplay · 2025</span>
+  <div class="video-wrap">
+    <iframe src="GAMEPLAY_URL" ...></iframe>
+  </div> -->
+</section>
+
+<!-- 02 LUMINA (WIP) -->
+<section class="section">
+  <span class="section-label">02 · Real-Time Data Visualization</span>
+
+  <div class="wip-block">
+    <span class="wip-badge">Work in progress · 2026</span>
+    <p class="wip-name">Lumina</p>
+    <p class="wip-meta">Concept &amp; Development · TouchDesigner · Biometric Data · Real-Time Projection</p>
+
+    <p class="project-text">Lumina transforms invisible biometric sleep data into contemplative nocturnal landscapes, recovering the ancestral relationship between the human body, the night sky, and the act of sleeping. LUNALOG converts the physiological data from your sleep into a unique starry sky: a visual and poetic archive of your nights, organized into a personal calendar. For users with Apple Watch / Wear OS with real-time streaming: the starry sky is projected onto the ceiling of the bedroom while sleeping, changing in real time according to the physiological data of the moment. The stars change in shape, color, intensity and size depending on the sleep stage of the user.</p>
+
+    <div class="tech-tags">
+      <span class="tech-tag">TouchDesigner</span>
+      <span class="tech-tag">Biometric Data</span>
+      <span class="tech-tag">Real-Time</span>
+      <span class="tech-tag">BLE Streaming</span>
+      <span class="tech-tag">Projection</span>
+    </div>
+
+    <!-- Media placeholders — replace with real content when ready -->
+    <div class="wip-media-grid">
+      <div class="wip-placeholder">
+        <span>Video / trailer</span>
+        <span style="font-size:8px;color:rgba(240,237,230,.08)">Add when ready</span>
+      </div>
+      <div class="wip-placeholder">
+        <span>Sketches / captures</span>
+        <span style="font-size:8px;color:rgba(240,237,230,.08)">Add when ready</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 PROCESS PROJECTS: CALIGARI + CYBORG -->
+<section class="section">
+  <span class="section-label">03 · Process &amp; Experimentation</span>
+  <p style="font-size:13px;color:var(--fg40);max-width:680px;margin-bottom:2.5rem;line-height:1.8">Shorter projects and explorations developed during the degree, tracing an early practice with 3D environments and generative AI tools.</p>
+
+  <div class="process-grid">
+
+    <!-- Das Parc des Dr. Caligari -->
+    <div class="process-item">
+      <span class="process-label">3D Animation · Blender</span>
+      <p class="process-name">Das Parc des Dr. Caligari</p>
+      <p class="process-meta">3D Modeling · Animation · Sound Design · 2024 · 1:25 min</p>
+      <p class="process-text">Short 3D animated film set in an amusement park inspired by The Cabinet of Dr. Caligari and German Expressionism. Developed entirely in Blender, focusing on environment modeling, stylized architecture, lighting design and mood construction within a unified visual language.</p>
+      <span class="video-caption" style="margin-top:.5rem">Dr. Caligari's Park · 2024</span>
+      <div class="video-wrap-sm">
+        <iframe src="https://player.vimeo.com/video/1219348138?color=CFF9FE&title=0&byline=0&portrait=0" title="Das Parc des Dr. Caligari" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <!-- Prefiero ser unx cyborg -->
+    <div class="process-item">
+      <span class="process-label">Generative AI · After Effects</span>
+      <p class="process-name">Prefiero ser unx cyborg que una diosa</p>
+      <p class="process-meta">NVIDIA GauGAN · After Effects · Python · 2020 · 1 min</p>
+      <p class="process-text">Monochannel video inspired by Donna Haraway's Cyborg Manifesto (1985). 3D maps created in After Effects are fed into NVIDIA GauGAN and processed via a Python script to generate landscapes automatically through neural networks. An early exploration of generative AI tools applied to feminist posthumanist thinking.</p>
+      <span class="video-caption" style="margin-top:.5rem">Prefiero ser unx cyborg · 2020</span>
+      <div class="video-wrap-sm">
+        <iframe src="https://player.vimeo.com/video/1219347290?color=CFF9FE&title=0&byline=0&portrait=0" title="Prefiero ser unx cyborg que una diosa" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <!-- GIF placeholder 1:1 — replace src when ready -->
+      <p style="font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--fg25);margin-top:.8rem;margin-bottom:.4rem">GIF · GauGAN technique</p>
+      <div class="gif-wrap">
+        <!-- <img src="assets/cyborg-gaugan.gif" alt="GauGAN technique"> -->
+        <p class="gif-placeholder">GIF 1:1<br>Add when ready</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CLOSING STATEMENT -->
+<div class="statement-block">
+  <p class="statement-quote">"Technology is most interesting when it makes something that was invisible suddenly perceptible."</p>
+  <p class="statement-sub">Whether through augmented reality, real-time biometric data or neural network processing, my interest in interactive and generative work is driven by the same question: how can a system, a tool or an algorithm reveal something about experience that other media cannot.</p>
+</div>
+
+</body>
+</html>
