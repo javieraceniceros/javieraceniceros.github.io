@@ -43,32 +43,13 @@
     .nav-contact:hover{color:var(--fg)}
 
     /* PAGE HEADER with image */
-    .page-header{
-      padding:5rem 2.5rem 4rem;
-      border-bottom:.5px solid var(--fg08);
-      display:grid;
-      grid-template-columns:1fr auto;
-      gap:3rem;
-      align-items:center;
-      max-width:1100px;
-    }
-    .page-header-text{}
+    .page-header{position:relative;padding:5rem 2.5rem 4rem;border-bottom:.5px solid var(--fg08);overflow:hidden}
+    .page-header-text{position:relative;z-index:1;max-width:900px}
     .page-eyebrow{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--fg25);margin-bottom:1.5rem;display:block}
     .page-title{font-family:var(--serif);font-size:clamp(2rem,4vw,3.2rem);font-weight:400;line-height:1.05;color:var(--fg);margin-bottom:2rem}
     .page-statement{font-size:15px;line-height:1.9;color:var(--fg70);max-width:580px}
-    .page-header-img{
-      width:260px;
-      flex-shrink:0;
-      display:flex;
-      align-items:center;
-      justify-content:flex-end;
-    }
-    .page-header-img img{
-      width:100%;
-      height:auto;
-      display:block;
-      opacity:.85;
-    }
+    .page-header-img{position:absolute;top:50%;right:5%;width:27%;max-width:340px;aspect-ratio:1/1;transform:translateY(-50%);z-index:0;pointer-events:none}
+    .page-header-img img{width:100%;height:100%;object-fit:cover;display:block;opacity:.85;mix-blend-mode:lighten}
 
     /* SECTIONS */
     .section{padding:4rem 2.5rem;border-bottom:.5px solid var(--fg08)}
@@ -100,20 +81,16 @@
     .process-intro{font-size:13px;color:var(--fg40);max-width:680px;margin-bottom:3rem;line-height:1.8}
 
     /* CYBORG — horizontal layout: left text+gif / right video */
-    .cyborg-grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:2.5rem;
-      max-width:900px;
-      align-items:start;
-      margin-bottom:3.5rem;
-    }
+    .cyborg-block{max-width:900px;margin-bottom:3.5rem}
+    .cyborg-head{max-width:720px;margin-bottom:1.8rem}
+    .cyborg-media{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:start}
     .cyborg-left{}
     .cyborg-name{font-family:var(--serif);font-size:1.1rem;color:var(--fg);margin-bottom:.3rem;line-height:1.2}
     .cyborg-meta{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--fg25);margin-bottom:.8rem}
     .cyborg-text{font-size:12.5px;line-height:1.8;color:var(--fg70);margin-bottom:1rem}
-    .gif-wrap{width:100%;background:var(--bg2);border:.5px solid var(--fg08);overflow:hidden;margin-top:1rem}
-    .gif-wrap img{width:100%;height:auto;display:block}
+    .gif-wrap{width:100%;aspect-ratio:2.3/1;background:var(--bg2);border:.5px solid var(--fg08);overflow:hidden}
+    /* recorte: oculta la marca de agua de clideo (franja inferior). Ajustar: subir aspect-ratio = menos recorte; object-position = desplaza el encuadre */
+    .gif-wrap img{width:100%;height:100%;object-fit:cover;object-position:50% 35%;display:block}
     .gif-placeholder{
       width:100%;aspect-ratio:854/380;
       display:flex;align-items:center;justify-content:center;
@@ -154,10 +131,10 @@
     .statement-quote{font-family:var(--serif);font-style:italic;font-size:clamp(1.3rem,2.6vw,1.9rem);line-height:1.55;color:var(--fg);margin-bottom:1.8rem}
     .statement-sub{font-size:14px;line-height:1.85;color:var(--fg70);max-width:680px}
 
+    @media(max-width:1024px){.page-header-img{display:none}}
     @media(max-width:860px){
-      .page-header{grid-template-columns:1fr}
-      .page-header-img{display:none}
-      .cyborg-grid{grid-template-columns:1fr}
+      .cyborg-media{grid-template-columns:1fr}
+      .case-layout{grid-template-columns:1fr}
       .wip-media-grid{grid-template-columns:1fr}
     }
     @media(max-width:600px){
@@ -166,7 +143,52 @@
       nav{padding:0 1rem}
       .nav-links a{padding:0 .5rem;font-size:10px}
     }
+    /* CASE BOARD (corcho) */
+    .case-layout{display:grid;grid-template-columns:1fr 330px;gap:2rem;max-width:1100px;margin-top:3.5rem;align-items:start}
+    .board{position:relative;padding:2.2rem 1.8rem 2.4rem;border:.5px solid var(--fg15);background-color:#15110d;
+      background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .6 0 0 0 0 .44 0 0 0 0 .3 0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+      box-shadow:inset 0 0 60px rgba(0,0,0,.65)}
+    .faces{display:grid;grid-template-columns:repeat(4,1fr);gap:1.6rem 1.2rem}
+    .face{font:inherit;color:inherit;cursor:pointer;text-align:center;display:block;position:relative;background:#101010;border:.5px solid var(--fg15);padding:7px 7px 10px;transform:rotate(var(--r,0deg));box-shadow:0 7px 14px rgba(0,0,0,.6);transition:transform .25s var(--ease,ease),border-color .25s}
+    .face::before{content:"";position:absolute;top:-5px;left:50%;width:9px;height:9px;margin-left:-4px;border-radius:50%;background:var(--accent);box-shadow:0 2px 3px rgba(0,0,0,.6)}
+    .face:hover{transform:rotate(0deg) translateY(-4px);border-color:var(--accent)}
+    .face-img{display:block;aspect-ratio:4/5;background:#1b1b1b;overflow:hidden}
+    .face-img img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(1) contrast(1.05)}
+    .face-name{display:block;margin-top:7px;font-family:var(--serif);font-size:12px;line-height:1.25;color:var(--fg70)}
+    .face:focus-visible{outline:1px solid var(--accent);outline-offset:3px}
+    .face.wrong{border-color:#c0392b}
+    .face.right{border-color:#3ecf7a}
+    .face:disabled{cursor:default}
+    .face:nth-child(1){--r:-2.2deg}.face:nth-child(2){--r:1.6deg}.face:nth-child(3){--r:-1deg}.face:nth-child(4){--r:2.4deg}
+    .face:nth-child(5){--r:1.2deg}.face:nth-child(6){--r:-2deg}.face:nth-child(7){--r:1.8deg}.face:nth-child(8){--r:-1.4deg}
+    .evidence{border:.5px solid var(--fg08);background:var(--bg3);padding:1.2rem}
+    .evidence model-viewer{width:100%;height:340px;background:transparent;--poster-color:transparent}
+    .evidence-q{font-family:var(--serif);font-size:1.15rem;color:var(--fg);margin-top:.9rem}
+    .evidence-hint{font-size:10px;letter-spacing:.06em;color:var(--fg25);margin-top:.35rem}
+    @media(max-width:600px){.faces{grid-template-columns:repeat(2,1fr)}}
+    /* LOCK + TAPE */
+    .lock{position:relative;max-width:800px;margin-bottom:1rem}
+    .lock .project-text{filter:blur(7px);user-select:none;transition:filter .9s ease}
+    .lock.open .project-text{filter:none;user-select:auto}
+    .tape{position:absolute;left:-3%;right:-3%;top:38%;text-align:center;padding:.5rem 0;transform:rotate(-2.5deg);
+      background:repeating-linear-gradient(-45deg,#e8c21a 0 16px,#141414 16px 32px);box-shadow:0 3px 10px rgba(0,0,0,.5);
+      transition:transform .9s ease,opacity .7s ease}
+    .tape span{background:#e8c21a;color:#111;padding:3px 14px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+    .tape2{top:62%;padding:.4rem 0;transform:rotate(2deg)}
+    .lock.open .tape{transform:translateX(115%) rotate(-2.5deg);opacity:0;pointer-events:none}
+    .lock.open .tape2{transform:translateX(-115%) rotate(2deg)}
+    /* GAME FEEDBACK */
+    .flash{position:absolute;inset:0;pointer-events:none;opacity:0}
+    .flash.bad{background:rgba(200,40,40,.4)}
+    .flash.good{background:rgba(62,207,122,.36)}
+    .flash.run{animation:flash .85s ease-out}
+    @keyframes flash{0%{opacity:0}25%{opacity:1}100%{opacity:0}}
+    @media(prefers-reduced-motion:reduce){.flash.run{animation:none;opacity:.5}.lock .project-text,.tape{transition:none}}
+    .game-status{font-size:12px;color:var(--fg70);margin-top:.9rem;min-height:1.4em}
+    .reveal{font:inherit;font-size:11px;letter-spacing:.06em;color:var(--fg70);background:none;border:.5px solid var(--fg25);padding:6px 14px;margin-top:.5rem;cursor:pointer}
+    .reveal:hover{color:var(--fg);border-color:var(--accent)}
   </style>
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
 </head>
 <body>
 
@@ -191,7 +213,7 @@
     <p class="page-statement">My practice in interactive and generative media explores how technology can transform the way people experience space, identity and narrative. From augmented reality games to real-time data visualization and 3D animation, I work at the intersection of physical and digital environments.</p>
   </div>
   <div class="page-header-img">
-    <img src="interactivelogo.png" alt="Interactive & Generative"/>
+    <img src="interactive/interactivelogo.png" alt="Interactive & Generative"/>
   </div>
 </header>
 
@@ -201,7 +223,6 @@
 
   <p class="project-name">¿Quién fue en el 60?</p>
   <p class="project-meta">Project Direction · Buenos Aires · 2024–2025</p>
-
   <div class="tech-tags">
     <span class="tech-tag">Unity</span>
     <span class="tech-tag">Vuforia SDK</span>
@@ -210,13 +231,43 @@
     <span class="tech-tag">Interactive Design</span>
   </div>
 
-  <p class="project-text">An augmented reality investigation game where the player, acting as a bus line employee, must identify passengers who have underpaid their fares. With only fragmented clues, the player must reconstruct the puzzle and decide who is responsible, knowing that each mistake reduces their chances. The experience unfolds through a hybrid system combining physical evidence and tablet-based augmented reality. Physical objects were digitized using photogrammetry and implemented as recognition targets within the Vuforia SDK, enabling real-time activation of audiovisual content upon detection. Set within the urban landscape of Buenos Aires, the project explores moral ambiguity and the construction of guilt under conditions of incomplete information.</p>
-
-  <div class="reflection">
-    <span class="reflection-label">Role</span>
-    <p class="reflection-text">Project direction and visual concept; narrative design and interactive logic development; audiovisual design and sound composition; trailer conception and production.</p>
+  <div class="lock" id="lock">
+    <p class="project-text">An augmented reality investigation game where the player, acting as a bus line employee, must identify passengers who have underpaid their fares. With only fragmented clues, the player must reconstruct the puzzle and decide who is responsible, knowing that each mistake reduces their chances. The experience unfolds through a hybrid system combining physical evidence and tablet-based augmented reality. Physical objects were digitized using photogrammetry and implemented as recognition targets within the Vuforia SDK, enabling real-time activation of audiovisual content upon detection. Set within the urban landscape of Buenos Aires, the project explores moral ambiguity and the construction of guilt under conditions of incomplete information.</p>
+    <div class="tape" aria-hidden="true"><span>Guess the suspect to read about the project</span></div>
+    <div class="tape tape2" aria-hidden="true"></div>
   </div>
 
+  <!-- GAME: click a face. Answer = "ruso" (Alexei Petrov, owner of the russian doll) -->
+  <div class="case-layout" style="margin-top:2.5rem">
+    <div>
+      <div class="board" id="board">
+        <div class="faces">
+        <button type="button" class="face" data-id="borracho"><span class="face-img"><img src="interactive/suspects/borracho.jpg" alt="Ivan Valenzuela" onerror="this.remove()"/></span><span class="face-name">Ivan Valenzuela</span></button>
+        <button type="button" class="face" data-id="ruso"><span class="face-img"><img src="interactive/suspects/ruso.jpg" alt="Alexei Petrov" onerror="this.remove()"/></span><span class="face-name">Alexei Petrov</span></button>
+        <button type="button" class="face" data-id="nicolas"><span class="face-img"><img src="interactive/suspects/nicolas.jpg" alt="Nicolas Maiques" onerror="this.remove()"/></span><span class="face-name">Nicolas Maiques</span></button>
+        <button type="button" class="face" data-id="abuelo"><span class="face-img"><img src="interactive/suspects/abuelo.jpg" alt="Anibal Bustos" onerror="this.remove()"/></span><span class="face-name">Anibal Bustos</span></button>
+        <button type="button" class="face" data-id="rascachuchi"><span class="face-img"><img src="interactive/suspects/rascachuchi.jpg" alt="Barbara Sanchez" onerror="this.remove()"/></span><span class="face-name">Barbara Sanchez</span></button>
+        <button type="button" class="face" data-id="jacki"><span class="face-img"><img src="interactive/suspects/jacki.jpg" alt="Jacqui Santana" onerror="this.remove()"/></span><span class="face-name">Jacqui Santana</span></button>
+        <button type="button" class="face" data-id="abuela"><span class="face-img"><img src="interactive/suspects/abuela.jpg" alt="Amparo Di Santis" onerror="this.remove()"/></span><span class="face-name">Amparo Di Santis</span></button>
+        <button type="button" class="face" data-id="chorro"><span class="face-img"><img src="interactive/suspects/chorro.jpg" alt="Ezequiel Monzón" onerror="this.remove()"/></span><span class="face-name">Ezequiel Monzón</span></button>
+        </div>
+        <div class="flash" id="flash"></div>
+      </div>
+      <p class="game-status" id="status" role="status" aria-live="polite">Pick who the object belongs to.</p>
+      <button type="button" class="reveal" id="reveal" hidden>Reveal anyway</button>
+    </div>
+    <aside class="evidence">
+      <span class="video-caption">Object found on the 60</span>
+      <model-viewer src="interactive/russian_doll.glb" alt="Russian doll found on the bus" camera-controls auto-rotate auto-rotate-delay="1500" interaction-prompt="none" disable-zoom shadow-intensity="0.8"></model-viewer>
+      <p class="evidence-q">Whose is this?</p>
+      <p class="evidence-hint">Drag to rotate it.</p>
+    </aside>
+  </div>
+
+  <div style="margin-top:2.5rem"><div class="reflection">
+    <span class="reflection-label">Role</span>
+    <p class="reflection-text">Project direction and visual concept; narrative design and interactive logic development; audiovisual design and sound composition; trailer conception and production.</p>
+  </div></div>
   <span class="video-caption">¿Quién fue en el 60? · Trailer · 2025</span>
   <div class="video-wrap">
     <iframe src="https://player.vimeo.com/video/1219349707?color=CFF9FE&title=0&byline=0&portrait=0" title="Quien fue en el 60 trailer" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
@@ -260,26 +311,24 @@
   <span class="section-label">03 · Process &amp; Experimentation</span>
   <p class="process-intro">Shorter projects and explorations, tracing an early practice with 3D environments and generative AI tools.</p>
 
-  <!-- CYBORG: left = text + gif / right = video -->
-  <div class="cyborg-grid">
-    <div class="cyborg-left">
+  <!-- CYBORG: text on top / video left + gif right -->
+  <div class="cyborg-block">
+    <div class="cyborg-head">
       <span style="font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--fg25);margin-bottom:.8rem;display:block">Generative AI · After Effects</span>
       <p class="cyborg-name">Prefiero ser unx cyborg que una diosa</p>
       <p class="cyborg-meta">NVIDIA GauGAN · After Effects · Python · 2020 · 1 min</p>
-      <p class="cyborg-text">Monochannel video inspired by Donna Haraway's Cyborg Manifesto (1985). 3D maps created in After Effects are fed into NVIDIA GauGAN and processed via a Python script to generate landscapes automatically through neural networks. An early exploration of generative AI tools applied to feminist posthumanist thinking.</p>
-
-      <!-- GIF 854x380 -->
-      <span class="video-caption">GauGAN process · technique detail</span>
-      <div class="gif-wrap">
-        <img src="gif_nvidia(1).gif" alt="GauGAN generative process"/>
-        <!-- placeholder shown if gif doesn't load -->
-      </div>
+      <p class="cyborg-text" style="margin-bottom:0">Monochannel video inspired by Donna Haraway's Cyborg Manifesto (1985). 3D maps created in After Effects are fed into NVIDIA GauGAN and processed via a Python script to generate landscapes automatically through neural networks. An early exploration of generative AI tools applied to feminist posthumanist thinking.</p>
     </div>
-
-    <div class="cyborg-right">
-      <span class="video-caption" style="margin-top:0">Prefiero ser unx cyborg · 2020</span>
-      <div class="video-wrap-med">
-        <iframe src="https://player.vimeo.com/video/1219347290?color=CFF9FE&title=0&byline=0&portrait=0" title="Prefiero ser unx cyborg que una diosa" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+    <div class="cyborg-media">
+      <div>
+        <span class="video-caption" style="margin-top:0">Prefiero ser unx cyborg · 2020</span>
+        <div class="video-wrap-med">
+          <iframe src="https://player.vimeo.com/video/1219347290?color=CFF9FE&title=0&byline=0&portrait=0" title="Prefiero ser unx cyborg que una diosa" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div>
+        <span class="video-caption" style="margin-top:0">GauGAN process · technique detail</span>
+        <div class="gif-wrap"><img src="interactive/gif_nvidia(1).gif" alt="GauGAN generative process"/></div>
       </div>
     </div>
   </div>
@@ -306,6 +355,31 @@
 </div>
 
 <script>
+  (function(){
+    var ANSWER='ruso', NAMES={ruso:'Alexei Petrov'}, errors=0, solved=false, KEY='qf60-solved';
+    var lock=document.getElementById('lock'), flash=document.getElementById('flash'),
+        status=document.getElementById('status'), reveal=document.getElementById('reveal'),
+        faces=document.querySelectorAll('.face');
+    function store(set){try{ if(set) sessionStorage.setItem(KEY,'1'); else return sessionStorage.getItem(KEY)==='1'; }catch(e){return false}}
+    function flashIt(kind){flash.className='flash '+kind; void flash.offsetWidth; flash.className='flash '+kind+' run';
+      setTimeout(function(){flash.className='flash'},900)}
+    function unlock(){lock.classList.add('open'); reveal.hidden=true; store(true)}
+    faces.forEach(function(f){f.addEventListener('click',function(){
+      if(solved) return;
+      if(f.dataset.id===ANSWER){
+        solved=true; f.classList.add('right'); flashIt('good'); unlock();
+        faces.forEach(function(x){ if(x!==f) x.disabled=true });
+        status.textContent='That\u2019s the one. '+NAMES.ruso+' \u2014 '+(errors+1)+(errors? ' attempts.':' attempt.');
+      } else {
+        errors++; f.classList.add('wrong'); f.disabled=true; flashIt('bad');
+        status.textContent='Not him. Mistakes: '+errors;
+        if(errors>=3) reveal.hidden=false;
+      }
+    })});
+    reveal.addEventListener('click',function(){unlock(); status.textContent='Revealed. The object belongs to '+NAMES.ruso+'.'});
+    if(store(false)){solved=true; lock.classList.add('open'); faces.forEach(function(x){ if(x.dataset.id===ANSWER) x.classList.add('right'); else x.disabled=true});
+      status.textContent='Case solved. '+NAMES.ruso+'.'}
+  })();
   document.addEventListener('DOMContentLoaded', function(){
     requestAnimationFrame(function(){
       document.body.classList.add('loaded');
