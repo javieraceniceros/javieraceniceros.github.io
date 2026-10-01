@@ -153,12 +153,21 @@
     .face::before{content:"";position:absolute;top:-5px;left:50%;width:9px;height:9px;margin-left:-4px;border-radius:50%;background:var(--accent);box-shadow:0 2px 3px rgba(0,0,0,.6)}
     .face:hover{transform:rotate(0deg) translateY(-4px);border-color:var(--accent)}
     .face-img{display:block;aspect-ratio:4/5;background:#1b1b1b;overflow:hidden}
-    .face-img img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(1) contrast(1.05)}
+    .face-img img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(1) contrast(1.05);transition:opacity .55s ease}
     .face-name{display:block;margin-top:7px;font-family:var(--serif);font-size:12px;line-height:1.25;color:var(--fg70)}
     .face:focus-visible{outline:1px solid var(--accent);outline-offset:3px}
     .face.wrong{border-color:#c0392b}
     .face.right{border-color:#3ecf7a}
     .face:disabled{cursor:default}
+    .face-traits{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.9rem;text-align:center;padding:0 .6rem;
+      font-family:var(--serif);font-style:italic;font-size:14px;line-height:1.2;color:var(--fg)}
+    .face-traits span+span{padding-top:.9rem;border-top:.5px solid var(--fg25);min-width:60%}
+    @media(hover:hover){
+      .face-traits{position:absolute;left:7px;right:7px;top:7px;aspect-ratio:4/5;opacity:0;pointer-events:none;transition:opacity .55s ease .1s}
+      .face:hover .face-img img,.face:focus-visible .face-img img{opacity:0}
+      .face:hover .face-traits,.face:focus-visible .face-traits{opacity:1}
+    }
+    @media(hover:none){.face-traits{gap:.1rem;margin-top:3px;font-size:10.5px;color:var(--fg40)}.face-traits span+span{padding:0;border:0;min-width:0}}
     .face:nth-child(1){--r:-2.2deg}.face:nth-child(2){--r:1.6deg}.face:nth-child(3){--r:-1deg}.face:nth-child(4){--r:2.4deg}
     .face:nth-child(5){--r:1.2deg}.face:nth-child(6){--r:-2deg}.face:nth-child(7){--r:1.8deg}.face:nth-child(8){--r:-1.4deg}
     .evidence{border:.5px solid var(--fg08);background:var(--bg3);padding:1.2rem}
@@ -184,7 +193,7 @@
     .flash.run{animation:flash .85s ease-out}
     @keyframes flash{0%{opacity:0}25%{opacity:1}100%{opacity:0}}
     @media(prefers-reduced-motion:reduce){.flash.run{animation:none;opacity:.5}.lock .project-text,.tape{transition:none}}
-    .game-status{font-size:12px;color:var(--fg70);margin-top:.9rem;min-height:1.4em}
+    .game-status{font-size:12.5px;line-height:1.7;max-width:640px;color:var(--fg70);margin-top:.9rem;min-height:1.4em}
     .reveal{font:inherit;font-size:11px;letter-spacing:.06em;color:var(--fg70);background:none;border:.5px solid var(--fg25);padding:6px 14px;margin-top:.5rem;cursor:pointer}
     .reveal:hover{color:var(--fg);border-color:var(--accent)}
   </style>
@@ -213,7 +222,7 @@
     <p class="page-statement">My practice in interactive and generative media explores how technology can transform the way people experience space, identity and narrative. From augmented reality games to real-time data visualization and 3D animation, I work at the intersection of physical and digital environments.</p>
   </div>
   <div class="page-header-img">
-    <img src="interactivelogo.png" alt="Interactive & Generative"/>
+    <img src="interactive/interactivelogo.png" alt="Interactive & Generative"/>
   </div>
 </header>
 
@@ -242,14 +251,14 @@
     <div>
       <div class="board" id="board">
         <div class="faces">
-        <button type="button" class="face" data-id="borracho"><span class="face-img"><img src="borracho.jpeg" alt="Ivan Valenzuela" onerror="this.remove()"/></span><span class="face-name">Ivan Valenzuela</span></button>
-        <button type="button" class="face" data-id="ruso"><span class="face-img"><img src="ruso.jpg" alt="Alexei Petrov" onerror="this.remove()"/></span><span class="face-name">Alexei Petrov</span></button>
-        <button type="button" class="face" data-id="nicolas"><span class="face-img"><img src="nicolas.jpeg" alt="Nicolas Maiques" onerror="this.remove()"/></span><span class="face-name">Nicolas Maiques</span></button>
-        <button type="button" class="face" data-id="abuelo"><span class="face-img"><img src="abuelo.jpg" alt="Anibal Bustos" onerror="this.remove()"/></span><span class="face-name">Anibal Bustos</span></button>
-        <button type="button" class="face" data-id="rascachuchi"><span class="face-img"><img src="rascachuchi.jpg" alt="Barbara Sanchez" onerror="this.remove()"/></span><span class="face-name">Barbara Sanchez</span></button>
-        <button type="button" class="face" data-id="jacki"><span class="face-img"><img src="jacki.jpeg" alt="Jacqui Santana" onerror="this.remove()"/></span><span class="face-name">Jacqui Santana</span></button>
-        <button type="button" class="face" data-id="abuela"><span class="face-img"><img src="abuela.jpg" alt="Amparo Di Santis" onerror="this.remove()"/></span><span class="face-name">Amparo Di Santis</span></button>
-        <button type="button" class="face" data-id="chorro"><span class="face-img"><img src="chorro.jpg" alt="Ezequiel Monzón" onerror="this.remove()"/></span><span class="face-name">Ezequiel Monzón</span></button>
+        <button type="button" class="face" data-id="borracho"><span class="face-img"><img src="borracho.jpeg" alt="Iván Valenzuela" onerror="this.remove()"/></span><span class="face-name">Iván Valenzuela</span><span class="face-traits"><span>Hardworking</span><span>Tired</span></span></button>
+        <button type="button" class="face" data-id="ruso"><span class="face-img"><img src="ruso.jpg" alt="Alexei Petrov" onerror="this.remove()"/></span><span class="face-name">Alexei Petrov</span><span class="face-traits"><span>Foreigner</span><span>Nostalgic</span></span></button>
+        <button type="button" class="face" data-id="nicolas"><span class="face-img"><img src="nicolas.jpeg" alt="Nicolás Maiques" onerror="this.remove()"/></span><span class="face-name">Nicolás Maiques</span><span class="face-traits"><span>Famous</span><span>In a rush</span></span></button>
+        <button type="button" class="face" data-id="abuelo"><span class="face-img"><img src="abuelo.jpg" alt="Aníbal Bustos" onerror="this.remove()"/></span><span class="face-name">Aníbal Bustos</span><span class="face-traits"><span>Melancholic</span><span>Distressed</span></span></button>
+        <button type="button" class="face" data-id="rascachuchi"><span class="face-img"><img src="rascachuchi.jpg" alt="Bárbara Sanchez" onerror="this.remove()"/></span><span class="face-name">Bárbara Sanchez</span><span class="face-traits"><span>Depressed</span><span>Aimless</span></span></button>
+        <button type="button" class="face" data-id="jacki"><span class="face-img"><img src="jacki.jpeg" alt="Jacqui Santana" onerror="this.remove()"/></span><span class="face-name">Jacqui Santana</span><span class="face-traits"><span>Romantic</span><span>Devoted</span></span></button>
+        <button type="button" class="face" data-id="abuela"><span class="face-img"><img src="abuela.jpg" alt="Amparo Di Santis" onerror="this.remove()"/></span><span class="face-name">Amparo Di Santis</span><span class="face-traits"><span>Set in her ways</span><span>Kind</span></span></button>
+        <button type="button" class="face" data-id="chorro"><span class="face-img"><img src="chorro.jpg" alt="Ezequiel Monzón" onerror="this.remove()"/></span><span class="face-name">Ezequiel Monzón</span><span class="face-traits"><span>Nervous</span><span>Mysterious</span></span></button>
         </div>
         <div class="flash" id="flash"></div>
       </div>
@@ -257,7 +266,7 @@
       <button type="button" class="reveal" id="reveal" hidden>Reveal anyway</button>
     </div>
     <aside class="evidence">
-      <span class="video-caption">Object found on the 60</span>
+      <span class="video-caption">Object found on the bus</span>
       <model-viewer src="russian_doll.glb" alt="Russian doll found on the bus" camera-controls auto-rotate auto-rotate-delay="1500" interaction-prompt="none" disable-zoom shadow-intensity="0.8"></model-viewer>
       <p class="evidence-q">Whose is this?</p>
       <p class="evidence-hint">Drag to rotate it.</p>
@@ -283,7 +292,7 @@
     <p class="project-name" style="margin-bottom:.3rem">Lumina</p>
     <p class="project-meta">Concept &amp; Development · TouchDesigner · Biometric Data · Real-Time Projection</p>
 
-    <p class="project-text" style="margin-bottom:1rem">Lumina transforms invisible biometric sleep data into contemplative nocturnal landscapes, recovering the ancestral relationship between the human body, the night sky, and the act of sleeping. LUNALOG converts physiological sleep data into a unique starry sky: a visual and poetic archive of your nights, organized into a personal calendar. For users with Apple Watch or Wear OS with real-time streaming, the starry sky is projected onto the ceiling of the bedroom while sleeping, changing in real time according to the physiological data of the moment. Stars change in shape, color, intensity and size depending on the user's sleep stage.</p>
+    <p class="project-text" style="margin-bottom:1rem">Lumina transforms biometric sleep data into contemplative nocturnal landscapes, inspired by the experience of gazing at the night sky before falling asleep. Each night becomes a unique sky, where stars shift in shape, color and intensity according to the recorded sleep stages (wakefulness, light, deep or REM). The project explores the possibility of projecting these skies in real time onto the bedroom ceiling, turning sleep itself into a living, generative image.</p>
 
     <div class="tech-tags">
       <span class="tech-tag">TouchDesigner</span>
@@ -348,15 +357,10 @@
   </div>
 </section>
 
-<!-- STATEMENT -->
-<div class="statement-block">
-  <p class="statement-quote">"Technology is most interesting when it makes something that was invisible suddenly perceptible."</p>
-  <p class="statement-sub">Whether through augmented reality, real-time biometric data or neural network processing, my interest in interactive and generative work is driven by the same question: how can a system, a tool or an algorithm reveal something about experience that other media cannot.</p>
-</div>
 
 <script>
   (function(){
-    var ANSWER='ruso', NAMES={ruso:'Alexei Petrov'}, errors=0, solved=false, KEY='qf60-solved';
+    var ANSWER='ruso', STORY='You found the suspect. Alexei Petrov came to Argentina with his family, fleeing the war in Russia. Deeply nostalgic for his homeland, he always carries a traditional matryoshka doll with him.', errors=0, solved=false, KEY='qf60-solved';
     var lock=document.getElementById('lock'), flash=document.getElementById('flash'),
         status=document.getElementById('status'), reveal=document.getElementById('reveal'),
         faces=document.querySelectorAll('.face');
@@ -369,16 +373,16 @@
       if(f.dataset.id===ANSWER){
         solved=true; f.classList.add('right'); flashIt('good'); unlock();
         faces.forEach(function(x){ if(x!==f) x.disabled=true });
-        status.textContent='That\u2019s the one. '+NAMES.ruso+' \u2014 '+(errors+1)+(errors? ' attempts.':' attempt.');
+        status.textContent=STORY;
       } else {
         errors++; f.classList.add('wrong'); f.disabled=true; flashIt('bad');
         status.textContent='Not him. Mistakes: '+errors;
         if(errors>=3) reveal.hidden=false;
       }
     })});
-    reveal.addEventListener('click',function(){unlock(); status.textContent='Revealed. The object belongs to '+NAMES.ruso+'.'});
+    reveal.addEventListener('click',function(){unlock(); status.textContent='The suspect was Alexei Petrov. '+STORY.split('. ').slice(1).join('. ')});
     if(store(false)){solved=true; lock.classList.add('open'); faces.forEach(function(x){ if(x.dataset.id===ANSWER) x.classList.add('right'); else x.disabled=true});
-      status.textContent='Case solved. '+NAMES.ruso+'.'}
+      status.textContent=STORY}
   })();
   document.addEventListener('DOMContentLoaded', function(){
     requestAnimationFrame(function(){
