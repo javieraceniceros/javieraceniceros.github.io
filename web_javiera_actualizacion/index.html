@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Javiera Luna Ceniceros</title>
+  <meta name="description" content="Audiovisual artist working at the intersection of interactive systems, archival media, and Latin American urban memory." />
+  <link rel="icon" href="/favicon.ico" sizes="any"/>
+  <link rel="icon" type="image/png" href="/favicon.png"/>
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0a; --bg2: #0f0f0f; --fg: #f0ede6;
+      --fg40: rgba(240,237,230,0.40); --fg25: rgba(240,237,230,0.25);
+      --fg15: rgba(240,237,230,0.15); --fg08: rgba(240,237,230,0.08);
+      --nav-h: 52px;
+      --sans: 'DM Sans', 'Helvetica Neue', sans-serif;
+      --serif: 'DM Serif Display', Georgia, serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--fg); font-family: var(--sans); font-weight: 300; min-height: 100vh; overflow-x: hidden; }
+
+    /* ── NAV ── */
+    nav { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 2.5rem; height: var(--nav-h); border-bottom: 0.5px solid var(--fg08); background: rgba(10,10,10,0.96); backdrop-filter: blur(10px); gap: 1rem; }
+    .nav-logo { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--fg40); text-decoration: none; flex-shrink: 0; font-weight: 500; }
+    .nav-links { display: flex; align-items: center; gap: 0; list-style: none; }
+    .nav-links a { display: flex; align-items: center; height: var(--nav-h); padding: 0 0.9rem; font-size: 11px; letter-spacing: 0.04em; color: var(--fg40); text-decoration: none; border-bottom: 1.5px solid transparent; transition: color 0.2s, border-color 0.2s; white-space: nowrap; font-weight: 400; }
+    .nav-links a:hover, .nav-links a.active { color: var(--fg); border-bottom-color: var(--fg); }
+    .nav-right { display: flex; align-items: center; gap: 1rem; flex-shrink: 0; }
+
+    /* Botón de sonido: abajo a la derecha del video, latiendo hasta que lo tocan */
+    #audio-btn { position: absolute; right: 16px; bottom: 16px; z-index: 2; display: flex; align-items: center; gap: 10px; padding: 12px 20px 12px 16px; border-radius: 999px; border: 1px solid rgba(240,237,230,0.6); background: rgba(10,10,10,0.5); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); color: var(--fg); font-family: var(--sans); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 400; white-space: nowrap; cursor: pointer; transform-origin: right bottom; animation: beat 1.8s ease-in-out infinite; transition: background .3s, color .3s, border-color .3s, padding .3s; }
+    #audio-btn::after { content: ""; position: absolute; inset: -1px; border-radius: inherit; border: 1px solid rgba(240,237,230,0.6); animation: ring 1.8s ease-out infinite; pointer-events: none; }
+    #audio-btn:hover { background: rgba(10,10,10,0.75); border-color: var(--fg); }
+    #audio-btn svg { display: block; flex-shrink: 0; }
+    @keyframes beat { 0%,100% { transform: scale(1); } 14% { transform: scale(1.08); } 28% { transform: scale(1); } 42% { transform: scale(1.05); } }
+    @keyframes ring { 0% { opacity: .7; transform: scale(1); } 100% { opacity: 0; transform: scale(1.2, 1.7); } }
+    /* Con sonido: gris clarito, chiquito y quieto */
+    #audio-btn.playing { padding: 10px; animation: none; background: rgba(220,218,212,0.85); border-color: rgba(220,218,212,0.85); color: #222; }
+    #audio-btn.playing::after { display: none; }
+    #audio-btn.playing .audio-label { display: none; }
+
+    .nav-contact { font-size: 11px; color: var(--fg25); text-decoration: none; letter-spacing: 0.04em; transition: color 0.2s; }
+    .nav-contact:hover { color: var(--fg); }
+
+    /* ── HERO ── */
+    .hero { display: grid; grid-template-columns: 1fr auto; align-items: center; min-height: calc(100vh - var(--nav-h)); opacity: 0; transform: translateY(12px); transition: opacity 0.9s ease 0.1s, transform 0.9s ease 0.1s; }
+    .hero.visible { opacity: 1; transform: translateY(0); }
+
+    .hero-text { display: flex; flex-direction: column; justify-content: center; padding: 5rem 3rem 5rem 2.5rem; }
+    .eyebrow { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--fg25); margin-bottom: 1.8rem; }
+    h1 { font-family: var(--serif); font-size: clamp(2.6rem, 4vw, 3.8rem); font-weight: 400; line-height: 1.05; letter-spacing: -0.01em; margin-bottom: 1.4rem; color: var(--fg); }
+    h1 em { font-style: italic; }
+    .rule { width: 28px; height: 0.5px; background: var(--fg25); margin-bottom: 1.4rem; }
+    .bio { font-size: 14px; line-height: 1.8; color: var(--fg40); max-width: 380px; margin-bottom: 2.5rem; }
+    .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 2.5rem; }
+    .tag { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg25); border: 0.5px solid var(--fg15); padding: 5px 12px; }
+    .creds { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+    .cred { font-size: 10.5px; color: rgba(240,237,230,0.20); letter-spacing: 0.03em; }
+    .socials { display: flex; gap: 1.2rem; align-items: center; }
+    .socials a { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(240,237,230,0.25); text-decoration: none; transition: color 0.2s; }
+    .socials a:hover { color: var(--fg40); }
+
+    /* Video hero — 16:9, centrado y más chico que antes */
+    .hero-media { background: var(--bg2); width: min(50vw, 900px); aspect-ratio: 16 / 9; margin-right: 2.5rem; overflow: hidden; position: relative; }
+    .hero-media video { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+
+    /* ── DIVIDER ── */
+    .divider { height: 0.5px; background: var(--fg08); }
+
+    /* ── WORK SECTION ── */
+    .work-section { padding: 5rem 2.5rem; }
+    .section-label { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(240,237,230,0.25); margin-bottom: 3rem; display: block; }
+
+    .category-row { display: grid; grid-template-columns: 2.5rem 1fr 220px; align-items: center; gap: 2rem; padding: 2rem 2.5rem; border-top: 0.5px solid var(--fg08); cursor: pointer; margin: 0 -2.5rem; text-decoration: none; color: inherit; transition: background 0.25s; }
+    .category-row:hover { background: rgba(240,237,230,0.02); }
+    .cat-num { font-size: 10.5px; color: rgba(240,237,230,0.18); align-self: start; padding-top: 4px; }
+    .cat-body { min-width: 0; }
+    .cat-title { font-family: var(--serif); font-size: clamp(1.2rem, 2vw, 1.7rem); font-weight: 400; letter-spacing: -0.01em; color: rgba(240,237,230,0.82); margin-bottom: 0.5rem; transition: color 0.2s; display: block; }
+    .category-row:hover .cat-title { color: var(--fg); }
+    .cat-desc { font-size: 12.5px; color: rgba(240,237,230,0.36); line-height: 1.65; margin-bottom: 0.8rem; max-width: 480px; }
+    .cat-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+    .cat-tag { font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(240,237,230,0.25); border: 0.5px solid var(--fg08); padding: 3px 9px; }
+
+    .cat-thumb { width: 220px; height: 130px; background: #111; overflow: hidden; flex-shrink: 0; position: relative; opacity: 0.55; transition: opacity 0.3s; }
+    .category-row:hover .cat-thumb { opacity: 1; }
+    .cat-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* ── EDUCATION ── */
+    .edu-grid { border-top: 0.5px solid var(--fg08); padding: 3.5rem 2.5rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+    .edu-label { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(240,237,230,0.20); margin-bottom: 8px; display: block; }
+    .edu-title { font-size: 13px; font-weight: 300; color: rgba(240,237,230,0.68); margin-bottom: 4px; line-height: 1.4; display: block; }
+    .edu-sub { font-size: 11px; color: rgba(240,237,230,0.25); line-height: 1.5; display: block; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-media { width: 100%; margin-right: 0; }
+      .category-row { grid-template-columns: 2rem 1fr; }
+      .cat-thumb { display: none; }
+      .edu-grid { grid-template-columns: 1fr 1fr; }
+      nav { padding: 0 1.2rem; }
+      .nav-links a { padding: 0 0.6rem; font-size: 10px; }
+    }
+    @media (max-width: 600px) {
+      .hero-text { padding: 3rem 1.5rem; }
+      .work-section { padding: 3rem 1.5rem; }
+      .edu-grid { grid-template-columns: 1fr; padding: 2.5rem 1.5rem; }
+      .category-row { padding: 1.5rem; margin: 0 -1.5rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero { opacity: 1; transform: none; transition: none; }
+      #audio-btn, #audio-btn::after { animation: none; }
+    }
+    /* nav deslizable en pantallas chicas */
+    @media(max-width:860px){.nav-links{overflow-x:auto;scrollbar-width:none;min-width:0;flex:1}.nav-links::-webkit-scrollbar{display:none}}
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">JLC</a>
+
+  <ul class="nav-links">
+    <li><a href="/" class="active">About Me</a></li>
+    <li><a href="/interactive">Interactive & Generative</a></li>
+    <li><a href="/sound">Sound</a></li>
+    <li><a href="/documentary">Documentary & Installation</a></li>
+    <li><a href="/research">Research & Activism</a></li>
+    <li><a href="/portfolio">Portfolio</a></li>
+  </ul>
+
+  <div class="nav-right">
+    <a href="/contact/" class="nav-contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-text">
+    <p class="eyebrow">Buenos Aires, Argentina</p>
+
+    <h1>Javiera<br><em>Luna</em><br>Ceniceros</h1>
+
+    <div class="rule"></div>
+
+    <p class="bio">
+      Audiovisual artist working at the intersection of interactive systems, archival media, and Latin American urban memory.
+    </p>
+
+    <div class="tags">
+      <span class="tag">Sound Design</span>
+      <span class="tag">AR</span>
+      <span class="tag">Installation</span>
+      <span class="tag">Research</span>
+    </div>
+
+    <div class="creds">
+      <span class="cred">Honours Diploma — UBA FADU</span>
+      <span class="cred">IELTS C1</span>
+      <span class="cred">2019–2025</span>
+    </div>
+
+    <div class="socials">
+      <a href="https://vimeo.com/user100093727" target="_blank" rel="noreferrer">Vimeo</a>
+      <a href="https://www.linkedin.com/in/javiera-luna-ceniceros/" target="_blank" rel="noreferrer">LinkedIn</a>
+    </div>
+  </div>
+
+  <!-- Video 16:9 — arranca silenciado (los navegadores bloquean el sonido automático); el botón sobre el video lo activa -->
+  <div class="hero-media">
+    <video id="hero-video" autoplay loop muted playsinline src="video_aboutme.mp4"></video>
+    <button id="audio-btn" type="button" aria-label="Turn sound on" aria-pressed="false">
+      <svg id="icon-mute" width="16" height="16" viewBox="0 0 14 14" fill="none">
+        <rect x="1" y="5" width="2" height="4" rx="1" fill="currentColor" opacity="0.6"/>
+        <rect x="6" y="5" width="2" height="4" rx="1" fill="currentColor" opacity="0.6"/>
+        <rect x="11" y="5" width="2" height="4" rx="1" fill="currentColor" opacity="0.6"/>
+      </svg>
+      <svg id="icon-play" width="16" height="16" viewBox="0 0 14 14" fill="none" style="display:none">
+        <rect x="1" y="4" width="2" height="6" rx="1" fill="currentColor"/>
+        <rect x="6" y="2" width="2" height="10" rx="1" fill="currentColor"/>
+        <rect x="11" y="5" width="2" height="4" rx="1" fill="currentColor"/>
+      </svg>
+      <span class="audio-label">Turn sound on</span>
+    </button>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- WORK -->
+<section class="work-section">
+  <span class="section-label">Work</span>
+
+  <a href="/interactive" class="category-row">
+    <span class="cat-num">01</span>
+    <div class="cat-body">
+      <span class="cat-title">Interactive & Generative</span>
+      <p class="cat-desc">AR experiences, generative video, real-time environments and 3D</p>
+      <div class="cat-tags">
+        <span class="cat-tag">AR</span>
+        <span class="cat-tag">Unity</span>
+        <span class="cat-tag">TouchDesigner</span>
+        <span class="cat-tag">GauGAN</span>
+      </div>
+    </div>
+    <div class="cat-thumb"><img src="miniatura_interactive.png" alt="Interactive & Generative"></div>
+  </a>
+
+  <a href="/sound" class="category-row">
+    <span class="cat-num">02</span>
+    <div class="cat-body">
+      <span class="cat-title">Sound</span>
+      <p class="cat-desc">Sound design for short films, videogames and music</p>
+      <div class="cat-tags">
+        <span class="cat-tag">Sound Design</span>
+        <span class="cat-tag">Foley</span>
+        <span class="cat-tag">Post-production</span>
+      </div>
+    </div>
+    <div class="cat-thumb"><img src="sound_miniatura.png" alt="Sound"></div>
+  </a>
+
+  <a href="/documentary" class="category-row">
+    <span class="cat-num">03</span>
+    <div class="cat-body">
+      <span class="cat-title">Documentary & Installation</span>
+      <p class="cat-desc">Immersive installations, documentary film and archival practice</p>
+      <div class="cat-tags">
+        <span class="cat-tag">Installation</span>
+        <span class="cat-tag">Super 8</span>
+        <span class="cat-tag">Archive</span>
+        <span class="cat-tag">Documentary</span>
+      </div>
+    </div>
+    <div class="cat-thumb"><img src="documentary_miniatura.png" alt="Documentary & Installation"></div>
+  </a>
+
+  <a href="/research" class="category-row">
+    <span class="cat-num">04</span>
+    <div class="cat-body">
+      <span class="cat-title">Research & Activism</span>
+      <p class="cat-desc">Film circulation, cultural politics, audiovisual research and militant cinema</p>
+      <div class="cat-tags">
+        <span class="cat-tag">Research</span>
+        <span class="cat-tag">Curation</span>
+        <span class="cat-tag">Publication</span>
+      </div>
+    </div>
+    <div class="cat-thumb"><img src="miniatura_activism.png" alt="Research & Activism"></div>
+  </a>
+</section>
+
+<!-- EDUCATION -->
+<div class="edu-grid">
+  <div>
+    <span class="edu-label">Degree</span>
+    <span class="edu-title">Diseño de Imagen y Sonido</span>
+    <span class="edu-sub">UBA FADU · 2019–2025</span>
+  </div>
+  <div>
+    <span class="edu-label">Distinction</span>
+    <span class="edu-title">Honours Diploma</span>
+    <span class="edu-sub">Academic excellence · UBA FADU</span>
+  </div>
+  <div>
+    <span class="edu-label">Exchange</span>
+    <span class="edu-title">Arte y Tecnología Interactiva</span>
+    <span class="edu-sub">Universidad de Guadalajara · 2023</span>
+  </div>
+  <div>
+    <span class="edu-label">Language</span>
+    <span class="edu-title">English C1</span>
+    <span class="edu-sub">IELTS Academic 7.0 · 2025</span>
+  </div>
+</div>
+
+<script>
+  // Fade in hero
+  document.addEventListener('DOMContentLoaded', () => {
+    requestAnimationFrame(() => {
+      document.getElementById('hero').classList.add('visible')
+    })
+  })
+
+  // Sound: activa/silencia el audio del propio video
+  const btn = document.getElementById('audio-btn')
+  const video = document.getElementById('hero-video')
+  const iconMute = document.getElementById('icon-mute')
+  const iconPlay = document.getElementById('icon-play')
+
+  btn.addEventListener('click', () => {
+    video.muted = !video.muted
+    const on = !video.muted
+    if (on) video.play()
+    btn.classList.toggle('playing', on)
+    btn.setAttribute('aria-pressed', String(on))
+    btn.setAttribute('aria-label', on ? 'Turn sound off' : 'Turn sound on')
+    btn.title = on ? 'Turn sound off' : ''
+    iconMute.style.display = on ? 'none' : 'block'
+    iconPlay.style.display = on ? 'block' : 'none'
+  })
+</script>
+
+</body>
+</html>
