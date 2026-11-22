@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Research &amp; Activism · Javiera Luna Ceniceros</title>
   <meta name="description" content="A research and activism practice spanning film circulation, archival work and militant cinema."/>
+  <link rel="icon" href="/favicon.ico" sizes="any"/>
+  <link rel="icon" type="image/png" href="/favicon.png"/>
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
@@ -235,6 +238,8 @@
       nav{padding:0 1rem}
       .nav-links a{padding:0 .5rem;font-size:10px}
     }
+    /* nav deslizable en pantallas chicas */
+    @media(max-width:860px){.nav-links{overflow-x:auto;scrollbar-width:none;min-width:0;flex:1}.nav-links::-webkit-scrollbar{display:none}}
   </style>
 </head>
 <body>
@@ -249,7 +254,7 @@
     <li><a href="/research" class="active">Research &amp; Activism</a></li>
     <li><a href="/portfolio">Portfolio</a></li>
   </ul>
-  <a href="mailto:cenicerojaviera@gmail.com" class="nav-contact">Contact</a>
+  <a href="/contact/" class="nav-contact">Contact</a>
 </nav>
 
 <!-- HEADER -->

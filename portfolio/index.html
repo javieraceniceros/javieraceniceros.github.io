@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio · Javiera Luna Ceniceros</title>
+  <meta name="description" content="Selected works 2021–2026: Correspondence of a Mother, Who Was It on the 60 Bus? and Lumina."/>
+  <link rel="icon" href="/favicon.ico" sizes="any"/>
+  <link rel="icon" type="image/png" href="/favicon.png"/>
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#0a0a0a;--bg2:#111;--bg3:#161616;
+      --fg:#f0ede6;--fg70:rgba(240,237,230,.70);--fg40:rgba(240,237,230,.40);
+      --fg25:rgba(240,237,230,.25);--fg15:rgba(240,237,230,.15);--fg08:rgba(240,237,230,.08);
+      --accent:#CFF9FE;--nav-h:52px;
+      --sans:'DM Sans','Helvetica Neue',sans-serif;--serif:'DM Serif Display',Georgia,serif;
+      --awake:#fff3b0;--light:#2fe0c6;--deep:#7a5cff;--rem:#d6c6ff;
+    }
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-weight:300;min-height:100vh;overflow-x:hidden}
+    a{color:inherit}
+    img{display:block;max-width:100%}
+
+    /* NAV (igual al resto del sitio) */
+    nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:var(--nav-h);border-bottom:.5px solid var(--fg08);background:rgba(10,10,10,.96);backdrop-filter:blur(10px);gap:1rem}
+    .nav-logo{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--fg40);text-decoration:none;flex-shrink:0;font-weight:500}
+    .nav-links{display:flex;align-items:center;list-style:none}
+    .nav-links a{display:flex;align-items:center;height:var(--nav-h);padding:0 .9rem;font-size:11px;letter-spacing:.04em;color:var(--fg40);text-decoration:none;border-bottom:1.5px solid transparent;transition:color .2s,border-color .2s;white-space:nowrap}
+    .nav-links a:hover,.nav-links a.active{color:var(--fg);border-bottom-color:var(--fg)}
+    .nav-contact{font-size:11px;color:var(--fg25);text-decoration:none;letter-spacing:.04em;transition:color .2s;flex-shrink:0}
+    .nav-contact:hover{color:var(--fg)}
+
+    /* HEADER */
+    .page-header{padding:6rem 2.5rem 4.5rem;border-bottom:.5px solid var(--fg08)}
+    .eyebrow{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--fg25);margin-bottom:1.5rem;display:block}
+    .page-title{font-family:var(--serif);font-weight:400;font-size:clamp(2.2rem,4.4vw,3.6rem);line-height:1.05;margin-bottom:2rem}
+    .page-statement{font-family:var(--serif);font-style:italic;font-size:clamp(1.05rem,1.7vw,1.35rem);line-height:1.6;color:var(--fg70);max-width:680px;margin-bottom:3rem}
+    .toc{list-style:none;max-width:680px;border-top:.5px solid var(--fg08)}
+    .toc a{display:grid;grid-template-columns:4rem 1fr auto;align-items:baseline;gap:1rem;padding:1rem 0;border-bottom:.5px solid var(--fg08);text-decoration:none;transition:padding .25s,color .2s;color:var(--fg70)}
+    .toc a:hover{padding-left:.6rem;color:var(--fg)}
+    .toc .y{font-size:10.5px;color:var(--fg25)}
+    .toc .t{font-family:var(--serif);font-size:1.25rem}
+    .toc .k{font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--fg25)}
+
+    /* WORK */
+    .work{border-bottom:.5px solid var(--fg08)}
+    .panel{padding:5rem 2.5rem;max-width:1240px}
+    .panel + .panel{padding-top:1rem}
+    .work-num{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--fg25);display:block;margin-bottom:1rem}
+    .work-title{font-family:var(--serif);font-weight:400;font-size:clamp(2rem,3.6vw,3rem);line-height:1.05}
+    .work-sub{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--fg40);margin:.4rem 0 3rem}
+
+    .intro{display:grid;grid-template-columns:1.05fr .95fr;gap:3.5rem;align-items:start}
+    .question{font-family:var(--serif);font-weight:400;font-size:clamp(1.7rem,3vw,2.5rem);line-height:1.12;margin-bottom:1.6rem}
+    .text{font-size:14px;line-height:1.9;color:var(--fg70);max-width:560px;margin-bottom:1.1rem}
+    .hero-img{width:100%;aspect-ratio:4/5;object-fit:cover;border:.5px solid var(--fg08)}
+
+    .facts{display:grid;grid-template-columns:8.5rem 1fr;gap:.55rem 1.2rem;margin-top:2.2rem;padding-top:1.6rem;border-top:.5px solid var(--fg08);max-width:560px}
+    .facts dt{font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--fg25);padding-top:3px}
+    .facts dd{font-size:12.5px;line-height:1.7;color:var(--fg70)}
+
+    .label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--fg25);display:block;margin-bottom:1.2rem}
+    .h3{font-family:var(--serif);font-weight:400;font-size:clamp(1.4rem,2.3vw,1.9rem);margin-bottom:1rem}
+
+    /* ROOMS */
+    .rooms{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;margin:2rem 0 3.5rem}
+    .room img{width:100%;aspect-ratio:4/3;object-fit:cover;border:.5px solid var(--fg08);filter:saturate(.9)}
+    .room b{display:block;font-weight:400;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--fg40);margin:.8rem 0 .3rem}
+    .room span{font-size:12px;line-height:1.6;color:var(--fg40)}
+
+    /* VIDEO */
+    .video{width:100%;max-width:900px;aspect-ratio:16/9;background:var(--bg2);border:.5px solid var(--fg08);margin-bottom:.7rem}
+    .video iframe{width:100%;height:100%;border:0;display:block}
+    .caption{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--fg25)}
+
+    /* TWO COLUMNS */
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;margin-top:4rem}
+    .pair{display:grid;grid-template-columns:1.55fr 1fr;gap:1rem}
+    .pair img{width:100%;height:100%;object-fit:cover;border:.5px solid var(--fg08)}
+
+    /* ENDINGS */
+    .endings{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.6rem;max-width:560px}
+    .ending{border:.5px solid var(--fg08);padding:1rem;font-size:12px;line-height:1.6;color:var(--fg70)}
+    .ending b{display:block;font-weight:400;font-size:9px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:.4rem}
+    .ending:nth-child(1) b{color:#e07a6a}.ending:nth-child(2) b{color:#6fd39a}.ending:nth-child(3) b{color:var(--accent)}
+
+    .clue{width:100%;border:.5px solid var(--fg08);margin:1.6rem 0 .7rem}
+    .clue-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:3rem}
+    .clue-steps span{font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--fg40)}
+
+    .exh{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}
+    .exh img{width:100%;aspect-ratio:16/9;object-fit:cover;border:.5px solid var(--fg08)}
+    .exh img.wide{grid-column:1/-1;aspect-ratio:2.2/1}
+    .link-btn{display:inline-flex;gap:.6rem;align-items:center;margin-top:1.4rem;padding:.75rem 1.2rem;border:.5px solid var(--fg25);font-size:11px;letter-spacing:.08em;text-decoration:none;color:var(--fg70);transition:border-color .2s,color .2s}
+    .link-btn:hover{border-color:var(--accent);color:var(--fg)}
+
+    /* LUMINA */
+    .skies{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    .sky img{width:100%;aspect-ratio:620/393;object-fit:cover;border:.5px solid var(--fg08)}
+    .sky b{display:flex;align-items:center;gap:.5rem;font-weight:400;font-size:10px;letter-spacing:.16em;text-transform:uppercase;margin:.7rem 0 .25rem}
+    .sky b::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor;box-shadow:0 0 8px currentColor}
+    .sky span{font-size:11.5px;line-height:1.6;color:var(--fg40);display:block}
+    .lumina-sys{display:grid;grid-template-columns:1.35fr .65fr;gap:3rem;align-items:start;margin-top:2rem}
+    .vertical{width:100%;max-width:340px;aspect-ratio:9/16;background:var(--bg2);border:.5px solid var(--fg08);margin-bottom:.7rem}
+    .vertical iframe{width:100%;height:100%;border:0;display:block}
+
+    .universe{position:relative;margin-top:4rem;min-height:440px;display:flex;align-items:flex-end;border:.5px solid var(--fg08);overflow:hidden}
+    .universe img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.75}
+    .universe::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,10,10,.92) 0%,rgba(10,10,10,.55) 50%,rgba(10,10,10,0) 80%)}
+    .universe div{position:relative;z-index:1;padding:3rem;max-width:520px}
+
+    /* FOOTER */
+    .more{padding:5rem 2.5rem;display:flex;flex-wrap:wrap;gap:2rem;justify-content:space-between;align-items:end}
+    .more p{font-family:var(--serif);font-size:clamp(1.4rem,2.4vw,2rem);line-height:1.25;max-width:560px}
+    .more nav{all:unset;display:flex;flex-wrap:wrap;gap:.8rem}
+
+    /* reveal on scroll */
+    .rv{opacity:0;transform:translateY(16px);transition:opacity .9s ease,transform .9s ease}
+    .rv.in{opacity:1;transform:none}
+
+    @media(max-width:960px){
+      .intro,.split,.lumina-sys{grid-template-columns:1fr}
+      .hero-img{aspect-ratio:16/10}
+      .rooms{grid-template-columns:repeat(3,1fr)}
+      .vertical{max-width:300px}
+    }
+    @media(max-width:600px){
+      nav{padding:0 1rem}.nav-links a{padding:0 .5rem;font-size:10px}
+      .page-header,.panel,.more{padding-left:1.5rem;padding-right:1.5rem}
+      .panel{padding-top:3.5rem;padding-bottom:3.5rem}
+      .rooms{grid-template-columns:1fr 1fr}
+      .endings,.clue-steps{grid-template-columns:1fr}
+      .skies,.exh,.pair{grid-template-columns:1fr}
+      .facts{grid-template-columns:1fr;gap:.2rem}
+      .facts dd{margin-bottom:.6rem}
+      .universe div{padding:1.8rem}
+    }
+    @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+    /* nav deslizable en pantallas chicas */
+    @media(max-width:860px){.nav-links{overflow-x:auto;scrollbar-width:none;min-width:0;flex:1}.nav-links::-webkit-scrollbar{display:none}}
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">JLC</a>
+  <ul class="nav-links">
+    <li><a href="/">About Me</a></li>
+    <li><a href="/interactive">Interactive &amp; Generative</a></li>
+    <li><a href="/sound">Sound</a></li>
+    <li><a href="/documentary">Documentary &amp; Installation</a></li>
+    <li><a href="/research">Research &amp; Activism</a></li>
+    <li><a href="/portfolio" class="active">Portfolio</a></li>
+  </ul>
+  <a href="/contact/" class="nav-contact">Contact</a>
+</nav>
+
+<!-- HEADER -->
+<header class="page-header">
+  <span class="eyebrow">Portfolio · Selected works 2021–2026</span>
+  <h1 class="page-title">The idea dictated the medium,<br>not the other way around.</h1>
+  <p class="page-statement">My projects have led me to explore different technologies and forms of expression, always guided by the needs of each idea. Along the way, I found in expanded media a way to turn questions into experiences.</p>
+  <ul class="toc">
+    <li><a href="#correspondence"><span class="y">2021</span><span class="t">Correspondence of a Mother</span><span class="k">Installation</span></a></li>
+    <li><a href="#bus"><span class="y">2024</span><span class="t">Who Was It on the 60 Bus?</span><span class="k">AR game</span></a></li>
+    <li><a href="#lumina"><span class="y">2026</span><span class="t">Lumina</span><span class="k">Generative installation</span></a></li>
+  </ul>
+</header>
+
+<!-- ═════════ WORK 01 · CORRESPONDENCE OF A MOTHER ═════════ -->
+<article class="work" id="correspondence">
+  <section class="panel">
+    <span class="work-num rv">Work 01 · 2021</span>
+    <h2 class="work-title rv">Correspondence of a Mother</h2>
+    <p class="work-sub rv">Correspondencia de Madre</p>
+
+    <div class="intro">
+      <div class="rv">
+        <p class="question">How to portray absence?</p>
+        <p class="text">After her daughter leaves home, a woman withdraws from life until she dies. Her story remains in the house: handwritten letters, family photographs and Super 8 films.</p>
+        <p class="text">The installation turns her absence into a space. Visitors enter as detectives and piece her story together from letters, annotated magazines and everyday objects.</p>
+        <dl class="facts">
+          <dt>Project type</dt><dd>Immersive documentary installation</dd>
+          <dt>Context</dt><dd>Audiovisual Project 2, FADU-UBA · one academic term</dd>
+          <dt>Presented at</dt><dd>MAGMA / CheLA, Buenos Aires, 2021</dd>
+          <dt>Team</dt><dd>Javiera Luna Ceniceros, Micaela Mendez, Dolores Benvenuto, Dana Farfan</dd>
+          <dt>My role</dt><dd>Co-direction and spatial design · digitisation of the family archive and Super 8 films · curation of the written materials · narrative structure of the journey · walkthrough video</dd>
+        </dl>
+      </div>
+      <img class="hero-img rv" src="img/corr-hero.jpg" alt="Frame from the family Super 8 films" loading="lazy"/>
+    </div>
+  </section>
+
+  <section class="panel">
+    <span class="label rv">The installation</span>
+    <h3 class="h3 rv">Five rooms, five stages of grief</h3>
+    <p class="text rv">The numbered route from 01 to 05 can be broken at any point. Visitors return to earlier rooms and engage with what they choose, shaping their own path.</p>
+    <div class="rooms">
+      <div class="room rv"><img src="img/room-1.jpg" alt="Living room" loading="lazy"/><b>01 Living room</b><span>The journey begins.</span></div>
+      <div class="room rv"><img src="img/room-2.jpg" alt="Staircase" loading="lazy"/><b>02 Staircase</b><span>An interlude of stillness, guided by music and projections.</span></div>
+      <div class="room rv"><img src="img/room-3.jpg" alt="Main bedroom" loading="lazy"/><b>03 Main bedroom</b><span>Letters, memories and a reconstructed intimacy.</span></div>
+      <div class="room rv"><img src="img/room-4.jpg" alt="Kitchen" loading="lazy"/><b>04 Kitchen</b><span>The darkest corner of grief.</span></div>
+      <div class="room rv"><img src="img/room-5.jpg" alt="Cluttered room" loading="lazy"/><b>05 Cluttered room</b><span>Light emerges from the wreckage in the final stage.</span></div>
+    </div>
+
+    <div class="video rv"><iframe src="https://player.vimeo.com/video/1243048732?color=CFF9FE&title=0&byline=0&portrait=0" title="Correspondence of a Mother, installation walkthrough" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+    <span class="caption">Installation walkthrough · 4:18</span>
+
+    <div class="split">
+      <div class="rv">
+        <span class="label">Exhibition</span>
+        <h3 class="h3">MAGMA, CheLA · 2021</h3>
+        <p class="text">The installation was adapted to a single room and brought with its projections and furniture. Visitors could interact with them.</p>
+      </div>
+      <div class="pair rv">
+        <img src="img/corr-magma-1.jpg" alt="Projected letters at the MAGMA exhibition" loading="lazy"/>
+        <img src="img/corr-magma-2.jpg" alt="Visitors reading the projected letters" loading="lazy"/>
+      </div>
+    </div>
+  </section>
+</article>
+
+<!-- ═════════ WORK 02 · WHO WAS IT ON THE 60 BUS? ═════════ -->
+<article class="work" id="bus">
+  <section class="panel">
+    <span class="work-num rv">Work 02 · 2024</span>
+    <h2 class="work-title rv">Who Was It on the 60 Bus?</h2>
+    <p class="work-sub rv">¿Quién fue en el 60?</p>
+
+    <div class="intro">
+      <div class="rv">
+        <p class="question">How much do you need to know to judge someone?</p>
+        <p class="text">The player is a bus driver on Line 60. The inspector gives an unavoidable task: find the passenger who paid less than they should. If nobody is sanctioned, the sanction falls on the driver. With a lost object, photographs and clues activated through augmented reality, the player decides who is responsible.</p>
+        <div class="endings">
+          <div class="ending"><b>Wrong accusation</b>You are penalised.</div>
+          <div class="ending"><b>Right accusation</b>You win.</div>
+          <div class="ending"><b>Right, but…</b>No penalty, but the suspect's reasons leave you feeling guilty.</div>
+        </div>
+        <dl class="facts">
+          <dt>Project type</dt><dd>Augmented reality investigation game</dd>
+          <dt>Context</dt><dd>Graduation thesis (Audiovisual Project 4), FADU-UBA · two academic terms</dd>
+          <dt>Presented at</dt><dd>MAGMA / CheLA, Buenos Aires, 11 and 12 December 2024</dd>
+          <dt>My role</dt><dd>Game script and narrative design · graphic design and game screens · design of the AR logic and its 2.5D animated content · sound clues · trailer</dd>
+          <dt>Delfina Carminatti</dt><dd>AR triggers · implementation in Vuforia and of the full game flow in Unity</dd>
+        </dl>
+      </div>
+      <img class="hero-img rv" src="img/bus-hero.jpg" alt="Player scanning a clue with the tablet" loading="lazy"/>
+    </div>
+  </section>
+
+  <section class="panel">
+    <span class="label rv">Process</span>
+    <h3 class="h3 rv">Anatomy of a clue</h3>
+    <p class="text rv">Physical objects were digitised through photogrammetry and used as AR recognition targets. Scanning the right object with the tablet unlocks a clue linked to its owner and reveals where the suspect got off.</p>
+    <img class="clue rv" src="img/bus-clue.jpg" alt="Object photogrammetry, clue activated and 2.5D bus stop" loading="lazy"/>
+    <div class="clue-steps rv"><span>01 Object photogrammetry</span><span>02 Clue activated</span><span>03 AR 2.5D bus stop unlocked</span></div>
+
+    <div class="video rv"><iframe src="https://player.vimeo.com/video/1219349707?color=CFF9FE&title=0&byline=0&portrait=0" title="Who Was It on the 60 Bus? Gameplay" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+    <span class="caption">Gameplay · 2:28 · Interface in Spanish</span>
+  </section>
+
+  <section class="panel">
+    <div class="split" style="margin-top:0">
+      <div class="rv">
+        <span class="label">Exhibition</span>
+        <h3 class="h3">Thesis exhibition, CheLA · 2024</h3>
+        <p class="text">The game space was set up as a bus company office. People of different ages played together, and several who could not solve the case on their own later returned with friends.</p>
+        <a class="link-btn" href="https://vimeo.com/1248090544" target="_blank" rel="noreferrer">Exhibition documentation · 1:30 ↗</a>
+      </div>
+      <div class="exh rv">
+        <img class="wide" src="img/bus-office.jpg" alt="The game space set up as a bus company office" loading="lazy"/>
+        <img src="img/bus-exh-1.jpg" alt="Visitors playing with the tablet" loading="lazy"/>
+        <img src="img/bus-exh-2.jpg" alt="Visitors solving the case" loading="lazy"/>
+      </div>
+    </div>
+  </section>
+</article>
+
+<!-- ═════════ WORK 03 · LUMINA ═════════ -->
+<article class="work" id="lumina">
+  <section class="panel">
+    <span class="work-num rv">Work 03 · 2026</span>
+    <h2 class="work-title rv">Lumina</h2>
+    <p class="work-sub rv">Generative installation based on biometric sleep data</p>
+
+    <div class="intro">
+      <div class="rv">
+        <p class="question">The sky once guided our sleep. Now sleep guides the sky.</p>
+        <p class="text">It began with the glow-in-the-dark stars children stick on their ceilings: small, artificial lights that brought into the bedroom the starry sky humanity had looked up at for millennia.</p>
+        <p class="text">What if this relationship were reversed? Lumina turns biometric sleep data into a projected night sky whose colours, movement and patterns are shaped by the sleeper's body.</p>
+        <dl class="facts">
+          <dt>Context</dt><dd>Independent project · 2026 · 8 weeks</dd>
+          <dt>Role</dt><dd>Sole creator</dd>
+          <dt>Data</dt><dd>Six nights of my own sleep, recorded with a smartwatch · system calibrated on the open sleep dataset SleepAccel</dd>
+          <dt>Tools</dt><dd>TouchDesigner, video projection</dd>
+          <dt>AI assistance</dt><dd>Generative AI wrote the TouchDesigner code and helped process the smartwatch data.</dd>
+        </dl>
+      </div>
+      <img class="hero-img rv" src="img/lum-hero.jpg" alt="Projected stars over a sleeping person" loading="lazy"/>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="lumina-sys">
+      <div>
+        <span class="label rv">The logic of the sky</span>
+        <h3 class="h3 rv">Four stages, four skies</h3>
+        <p class="text rv">Each sleep stage defines a distinct visual state of the sky. Within each stage, heart rate and breathing continuously shape the stars' brightness, glow and movement. Because these signals vary from person to person, the system first sets what is normal for each sleeper, then reads every change against that baseline.</p>
+        <div class="skies">
+          <div class="sky rv"><img src="img/lum-awake.jpg" alt="Awake sky" loading="lazy"/><b style="color:var(--awake)">Awake</b><span>HR ≈ 60–71 bpm · Resp ≈ 14–15.5 /min · 3% of the night</span></div>
+          <div class="sky rv"><img src="img/lum-light.jpg" alt="Light sleep sky" loading="lazy"/><b style="color:var(--light)">Light sleep</b><span>HR ≈ 65–77 bpm · Resp ≈ 14.5–17.5 /min · 60% of the night</span></div>
+          <div class="sky rv"><img src="img/lum-deep.jpg" alt="Deep sleep sky" loading="lazy"/><b style="color:var(--deep)">Deep sleep</b><span>HR ≈ 71–83 bpm · Resp ≈ 15.5–18.5 /min · 12% of the night</span></div>
+          <div class="sky rv"><img src="img/lum-rem.jpg" alt="REM sky" loading="lazy"/><b style="color:var(--rem)">REM</b><span>HR ≈ 66–77 bpm · Resp ≈ 14–17 /min · 25% of the night</span></div>
+        </div>
+      </div>
+      <div class="rv">
+        <span class="label">One night</span>
+        <div class="vertical"><iframe src="https://player.vimeo.com/video/1248792883?color=CFF9FE&title=0&byline=0&portrait=0" title="Lumina, prototype visual demonstration" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <span class="caption">Prototype, visual demonstration · 1:02</span>
+      </div>
+    </div>
+
+    <div class="universe rv">
+      <img src="img/lum-universe.jpg" alt="" loading="lazy"/>
+      <div>
+        <span class="label">Next · Research direction</span>
+        <h3 class="h3">A universe made of nights</h3>
+        <p class="text">What if everyone's sleep painted the same sky? Each night becomes a galaxy in a shared universe. From afar, it is just space; come closer, and you discover that this galaxy, full of flickering light, holds someone's night. No galaxy exists alone, and the sky only grows when it is shared.</p>
+      </div>
+    </div>
+  </section>
+</article>
+
+<!-- FOOTER -->
+<section class="more">
+  <p>To see more of my process and all my work, explore each area, or get in touch.</p>
+  <nav>
+    <a class="link-btn" href="/interactive">Interactive &amp; Generative</a>
+    <a class="link-btn" href="/documentary">Documentary &amp; Installation</a>
+    <a class="link-btn" href="/contact/">Contact →</a>
+  </nav>
+</section>
+
+<script>
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target) } }), { threshold: .12 })
+  document.querySelectorAll('.rv').forEach(el => io.observe(el))
+</script>
+</body>
+</html>
